@@ -1,0 +1,10 @@
+{
+  "name": "Atlas Finance",
+  "short_name": "Atlas",
+  "description": "Pendamping keuangan privat, local-first, dan terarah.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f4f0e8",
+  "theme_color": "#17223b"
+}
