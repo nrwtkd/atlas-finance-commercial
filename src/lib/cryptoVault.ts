@@ -30,11 +30,21 @@ function base64ToBytes(value: string): Uint8Array {
   return bytes;
 }
 
+function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
+  return bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer;
+}
+
 async function deriveKey(pin: string, salt: Uint8Array): Promise<CryptoKey> {
-  const material = await crypto.subtle.importKey("raw", encoder.encode(pin), "PBKDF2", false, ["deriveKey"]);
+  const material = await crypto.subtle.importKey(
+    "raw",
+    toArrayBuffer(encoder.encode(pin)),
+    "PBKDF2",
+    false,
+    ["deriveKey"]
+  );
 
   return crypto.subtle.deriveKey(
-    { name: "PBKDF2", salt, iterations: ITERATIONS, hash: "SHA-256" },
+    { name: "PBKDF2", salt: toArrayBuffer(salt), iterations: ITERATIONS, hash: "SHA-256" },
     material,
     { name: "AES-GCM", length: 256 },
     false,
@@ -51,7 +61,11 @@ export async function saveFinanceState(pin: string, state: FinanceState): Promis
   const iv = crypto.getRandomValues(new Uint8Array(12));
   const key = await deriveKey(pin, salt);
   const plaintext = encoder.encode(JSON.stringify(state));
-  const encrypted = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, plaintext);
+  const encrypted = await crypto.subtle.encrypt(
+    { name: "AES-GCM", iv: toArrayBuffer(iv) },
+    key,
+    toArrayBuffer(plaintext)
+  );
 
   await writeVault({
     version: 1,
@@ -69,9 +83,9 @@ export async function loadFinanceState(pin: string): Promise<FinanceState | null
 
   try {
     const decrypted = await crypto.subtle.decrypt(
-      { name: "AES-GCM", iv: base64ToBytes(envelope.iv) },
+      { name: "AES-GCM", iv: toArrayBuffer(base64ToBytes(envelope.iv)) },
       key,
-      base64ToBytes(envelope.ciphertext)
+      toArrayBuffer(base64ToBytes(envelope.ciphertext))
     );
     return JSON.parse(decoder.decode(decrypted)) as FinanceState;
   } catch {
