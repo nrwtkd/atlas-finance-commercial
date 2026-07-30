@@ -1,0 +1,80 @@
+import { readVault, writeVault } from "./localDb";
+import type { FinanceState } from "../types";
+
+const encoder = new TextEncoder();
+const decoder = new TextDecoder();
+const ITERATIONS = 310000;
+
+interface VaultEnvelope {
+  version: 1;
+  salt: string;
+  iv: string;
+  ciphertext: string;
+}
+
+function bytesToBase64(bytes: Uint8Array): string {
+  let binary = "";
+  const chunkSize = 32768;
+
+  for (let index = 0; index < bytes.length; index += chunkSize) {
+    binary += String.fromCharCode(...bytes.subarray(index, index + chunkSize));
+  }
+
+  return btoa(binary);
+}
+
+function base64ToBytes(value: string): Uint8Array {
+  const binary = atob(value);
+  const bytes = new Uint8Array(binary.length);
+  for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
+  return bytes;
+}
+
+async function deriveKey(pin: string, salt: Uint8Array): Promise<CryptoKey> {
+  const material = await crypto.subtle.importKey("raw", encoder.encode(pin), "PBKDF2", false, ["deriveKey"]);
+
+  return crypto.subtle.deriveKey(
+    { name: "PBKDF2", salt, iterations: ITERATIONS, hash: "SHA-256" },
+    material,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["encrypt", "decrypt"]
+  );
+}
+
+export async function vaultExists(): Promise<boolean> {
+  return Boolean(await readVault<VaultEnvelope>());
+}
+
+export async function saveFinanceState(pin: string, state: FinanceState): Promise<void> {
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const key = await deriveKey(pin, salt);
+  const plaintext = encoder.encode(JSON.stringify(state));
+  const encrypted = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, plaintext);
+
+  await writeVault({
+    version: 1,
+    salt: bytesToBase64(salt),
+    iv: bytesToBase64(iv),
+    ciphertext: bytesToBase64(new Uint8Array(encrypted))
+  } satisfies VaultEnvelope);
+}
+
+export async function loadFinanceState(pin: string): Promise<FinanceState | null> {
+  const envelope = await readVault<VaultEnvelope>();
+  if (!envelope) return null;
+
+  const key = await deriveKey(pin, base64ToBytes(envelope.salt));
+
+  try {
+    const decrypted = await crypto.subtle.decrypt(
+      { name: "AES-GCM", iv: base64ToBytes(envelope.iv) },
+      key,
+      base64ToBytes(envelope.ciphertext)
+    );
+    return JSON.parse(decoder.decode(decrypted)) as FinanceState;
+  } catch {
+    throw new Error("PIN salah atau data lokal tidak dapat dibuka.");
+  }
+}
