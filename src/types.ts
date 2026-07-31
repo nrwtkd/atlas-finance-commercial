@@ -39,6 +39,50 @@ export type GoalType =
   | "wedding"
   | "custom";
 
+export type MoneyEmotion =
+  | "calm"
+  | "safe"
+  | "grateful"
+  | "happy"
+  | "anxious"
+  | "pressured"
+  | "guilty"
+  | "tired"
+  | "afraid"
+  | "confused";
+
+export type EmotionTrigger =
+  | "balance"
+  | "income"
+  | "needs"
+  | "bills"
+  | "shopping"
+  | "saving"
+  | "debt"
+  | "conversation"
+  | "future"
+  | "other";
+
+export type SupportNeed =
+  | "pause"
+  | "clarity"
+  | "small_plan"
+  | "support"
+  | "reduce_temptation"
+  | "celebrate";
+
+export type FinancialWinCategory =
+  | "awareness"
+  | "consistency"
+  | "restraint"
+  | "income"
+  | "budget"
+  | "emergency"
+  | "goal"
+  | "debt"
+  | "learning"
+  | "other";
+
 export interface BudgetAllocation {
   bucket: BudgetBucket;
   percent: number;
@@ -85,14 +129,51 @@ export interface FinanceTransaction {
   area?: string;
 }
 
+export interface EmotionalCheckIn {
+  id: string;
+  date: string;
+  emotion: MoneyEmotion;
+  intensity: number;
+  trigger: EmotionTrigger;
+  supportNeed: SupportNeed;
+  note: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface FinancialWin {
+  id: string;
+  date: string;
+  title: string;
+  description: string;
+  amount?: number;
+  category: FinancialWinCategory;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface MonthlyReflection {
+  id: string;
+  month: string;
+  proudOf: string;
+  worthIt: string;
+  patternToChange: string;
+  nextStep: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface FinanceState {
-  schemaVersion: 3;
+  schemaVersion: 4;
   profileName: string;
   householdMembers: string[];
   customCategories: Record<string, string[]>;
   budgetPlans: BudgetPlan[];
   goals: FinancialGoal[];
   learningProgress: string[];
+  emotionalCheckIns: EmotionalCheckIn[];
+  financialWins: FinancialWin[];
+  monthlyReflections: MonthlyReflection[];
   transactions: FinanceTransaction[];
   lastUpdatedAt: string;
 }
