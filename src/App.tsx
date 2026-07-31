@@ -205,13 +205,15 @@ function App() {
 function Login({ message, setMessage }: { message: string; setMessage: (value: string) => void }) {
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
+  const messageIsSuccess = message.toLowerCase().includes("dikirim");
 
   async function submit(event: FormEvent) {
     event.preventDefault();
     setBusy(true);
+    setMessage("");
     try {
       await sendMagicLink(email);
-      setMessage("Tautan masuk sudah dikirim ke emailmu.");
+      setMessage("Tautan masuk sudah dikirim. Silakan cek emailmu untuk melanjutkan ke Atlas.");
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Tautan masuk gagal dikirim.");
     } finally {
@@ -220,23 +222,101 @@ function Login({ message, setMessage }: { message: string; setMessage: (value: s
   }
 
   return (
-    <div className="authPage">
-      <section className="authHero">
-        <div className="mark">A</div><span className="eyebrow">ATLAS FINANCE</span>
-        <h1>Keuanganmu, tetap milikmu.</h1>
-        <p>Login memeriksa akses pembelian. Data keuangan tetap tersimpan di perangkat.</p>
+    <div className="authPage loginPage">
+      <div className="loginGlow loginGlowOne" aria-hidden="true" />
+      <div className="loginGlow loginGlowTwo" aria-hidden="true" />
+
+      <section className="authHero loginHero">
+        <div className="brandLockup">
+          <div className="mark loginMark">A</div>
+          <div>
+            <span className="eyebrow">ATLAS FINANCE</span>
+            <span className="brandByline">by ALALA</span>
+          </div>
+        </div>
+
+        <h1>
+          <span>Mulai dari kondisi yang ada.</span>
+          <em>Bertumbuh menuju hidup yang kamu inginkan.</em>
+        </h1>
+
+        <p className="heroLead">
+          Lihat kondisi keuanganmu dengan lebih jernih, bangun kebiasaan yang lebih baik,
+          dan jadikan setiap progres sebagai langkah menuju hidup yang lebih tenang dan bebas menentukan pilihan.
+        </p>
+
+        <div className="privacyPromise">
+          <span className="promiseIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img">
+              <path d="M12 3.2 19 6v5.4c0 4.5-2.7 7.8-7 9.6-4.3-1.8-7-5.1-7-9.6V6l7-2.8Z" />
+              <path d="m8.8 12 2.1 2.1 4.4-4.6" />
+            </svg>
+          </span>
+          <span>
+            <strong>Keuanganmu, tetap milikmu.</strong>
+            <small>Data finansial tersimpan di perangkatmu.</small>
+          </span>
+        </div>
       </section>
-      <section className="card authCard">
-        <button className="primary" disabled={busy} onClick={() => signInWithGoogle().catch((e) => setMessage(e.message))}>
-          Lanjutkan dengan Google
+
+      <section className="card authCard loginCard">
+        <div className="cardIntro">
+          <span className="journeyIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img">
+              <path d="M5 19c4-1 6-3 7-7 1-3 3-5 7-6" />
+              <path d="m15.5 4.5 3.5 1.5-1.5 3.5" />
+              <circle cx="5" cy="19" r="2" />
+            </svg>
+          </span>
+          <div>
+            <h2>Perjalananmu dimulai di sini.</h2>
+            <p>Masuk menggunakan akun atau email yang kamu gunakan saat membeli Atlas.</p>
+          </div>
+        </div>
+
+        <button
+          className="primary googleButton"
+          type="button"
+          disabled={busy}
+          onClick={() => signInWithGoogle().catch((error) => setMessage(error.message))}
+        >
+          <span className="googleMark" aria-hidden="true">G</span>
+          <span>{busy ? "Menyiapkan…" : "Lanjutkan dengan Google"}</span>
         </button>
+
         <div className="divider"><span>atau</span></div>
-        <form onSubmit={submit}>
-          <label>Email pembelian<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /></label>
-          <button className="secondary wide" disabled={busy}>Kirim tautan masuk</button>
+
+        <form className="loginForm" onSubmit={submit}>
+          <label>
+            Email pembelian
+            <input
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="nama@email.com"
+              autoComplete="email"
+              required
+            />
+          </label>
+          <button className="secondary wide loginSubmit" disabled={busy}>
+            {busy ? "Mengirim tautan…" : "Kirim tautan masuk"}
+          </button>
+          <p className="loginHelper">
+            Tidak perlu kata sandi. Kami akan mengirimkan tautan masuk sekali pakai ke emailmu.
+          </p>
         </form>
-        {message && <p className="formMessage">{message}</p>}
+
+        {message && (
+          <p className={`formMessage loginMessage ${messageIsSuccess ? "success" : "error"}`} role="status">
+            {message}
+          </p>
+        )}
       </section>
+
+      <p className="authClosing">
+        <span aria-hidden="true">✦</span>
+        Kamu tidak perlu menunggu keuanganmu sempurna untuk mulai menatanya.
+      </p>
     </div>
   );
 }
