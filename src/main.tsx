@@ -17,6 +17,7 @@ import "./ui-polish-v9.css";
 import "./ui-icons-v10.css";
 import "./desktop-scale-v11.css";
 import "./interaction-v16.css";
+import "./goal-allocation-clarity-v19.css";
 
 if ("serviceWorker" in navigator && import.meta.env.PROD) {
   window.addEventListener("load", () => {
