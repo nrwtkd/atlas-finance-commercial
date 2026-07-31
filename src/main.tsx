@@ -9,6 +9,7 @@ import "./learning.css";
 import "./universal-v3.css";
 import "./learning-rich-v5.css";
 import "./learning-depth-v6.css";
+import "./onboarding-v7.css";
 
 if ("serviceWorker" in navigator && import.meta.env.PROD) {
   window.addEventListener("load", () => {
