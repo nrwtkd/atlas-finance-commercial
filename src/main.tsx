@@ -4,6 +4,7 @@ import App from "./App";
 import "./styles.css";
 import "./login-fit.css";
 import "./experience.css";
+import "./learning.css";
 
 if ("serviceWorker" in navigator && import.meta.env.PROD) {
   window.addEventListener("load", () => {
