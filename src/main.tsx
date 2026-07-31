@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import LearningExperienceUpgrade from "./components/LearningExperienceUpgrade";
 import InstallAtlasPrompt from "./components/InstallAtlasPrompt";
+import NightlyBackupReminder from "./components/NightlyBackupReminder";
 import "./styles.css";
 import "./login-fit.css";
 import "./experience.css";
@@ -29,5 +30,6 @@ createRoot(document.getElementById("root")!).render(
     <App />
     <LearningExperienceUpgrade />
     <InstallAtlasPrompt />
+    <NightlyBackupReminder />
   </StrictMode>
 );
