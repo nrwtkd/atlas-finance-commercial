@@ -2,12 +2,12 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { Entitlement } from "../types";
 
 const url = import.meta.env.VITE_SUPABASE_URL?.trim();
-const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim();
+const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY?.trim();
 
-export const isSupabaseConfigured = Boolean(url && anonKey);
+export const isSupabaseConfigured = Boolean(url && publishableKey);
 
 export const supabase: SupabaseClient | null = isSupabaseConfigured
-  ? createClient(url as string, anonKey as string, {
+  ? createClient(url as string, publishableKey as string, {
       auth: {
         persistSession: true,
         autoRefreshToken: true,
