@@ -1,23 +1,37 @@
 .emergencyGuide {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(285px, 0.75fr);
-  gap: 18px;
+  grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.72fr);
+  gap: 22px;
   margin: 18px 0;
+  padding: 26px;
+  overflow: hidden;
+  border: 1px solid rgba(23, 48, 72, 0.12);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(220, 232, 223, 0.7), transparent 23rem),
+    linear-gradient(145deg, #fffdf8 0%, #f6eee2 100%);
+  box-shadow: 0 18px 46px rgba(23, 48, 72, 0.08);
 }
 
 .emergencyGuideMain,
 .emergencyCompanionPanel {
-  border: 1px solid rgba(23, 48, 72, 0.12);
-  border-radius: 26px;
-  box-shadow: 0 18px 46px rgba(23, 48, 72, 0.08);
+  min-width: 0;
 }
 
 .emergencyGuideMain {
-  padding: 26px;
-  background: linear-gradient(145deg, #fffdf8 0%, #f6eee2 100%);
+  display: flex;
+  flex-direction: column;
 }
 
 .emergencyGuideIntro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.emergencyGuideIntro > div {
+  min-width: 0;
   max-width: 720px;
 }
 
@@ -35,6 +49,21 @@
   line-height: 1.65;
 }
 
+.emergencyGuideIntro .automaticBadge {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border: 1px solid rgba(78, 109, 98, 0.18);
+  border-radius: 999px;
+  background: rgba(220, 232, 223, 0.72);
+  color: #4e6d62;
+  font-size: 0.72rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
 .emergencyNumbers {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -47,7 +76,7 @@
   padding: 16px;
   border: 1px solid rgba(23, 48, 72, 0.1);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.76);
 }
 
 .emergencyNumbers article span,
@@ -180,36 +209,17 @@
 }
 
 .emergencyCompanionPanel {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-content: start;
   align-items: center;
-  padding: 22px 20px 20px;
-  background: linear-gradient(160deg, #dce8df 0%, #edf3ee 52%, #fffaf2 100%);
-  text-align: center;
+  gap: 14px;
+  padding-left: 22px;
+  border-left: 1px solid rgba(23, 48, 72, 0.1);
 }
 
 .companionSpeech {
-  position: relative;
-  width: 100%;
-  margin-top: -7px;
-  padding: 17px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.84);
-}
-
-.companionSpeech::before {
-  content: "";
-  position: absolute;
-  top: -9px;
-  left: 50%;
-  width: 18px;
-  height: 18px;
-  transform: translateX(-50%) rotate(45deg);
-  background: inherit;
-}
-
-.companionSpeech > * {
-  position: relative;
+  min-width: 0;
 }
 
 .companionSpeech strong {
@@ -226,9 +236,21 @@
   line-height: 1.55;
 }
 
+.emergencyGuidancePrompt {
+  display: block;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(23, 48, 72, 0.1);
+  color: #4e6d62;
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
 .emergencyPurpose {
+  grid-column: 1 / -1;
   width: 100%;
-  margin-top: 13px;
+  margin-top: 8px;
   border-top: 1px solid rgba(23, 48, 72, 0.1);
   text-align: left;
 }
@@ -272,40 +294,27 @@
   }
 
   .emergencyCompanionPanel {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: center;
-    text-align: left;
-  }
-
-  .emergencyCompanionPanel .emergencyPurpose {
-    grid-column: 1 / -1;
-  }
-
-  .companionSpeech {
-    margin-top: 0;
-  }
-
-  .companionSpeech::before {
-    top: 50%;
-    left: -8px;
-    transform: translateY(-50%) rotate(45deg);
+    padding-top: 18px;
+    padding-left: 0;
+    border-top: 1px solid rgba(23, 48, 72, 0.1);
+    border-left: 0;
   }
 }
 
 @media (max-width: 700px) {
   .emergencyGuide {
     margin: 14px 0;
-    gap: 12px;
-  }
-
-  .emergencyGuideMain,
-  .emergencyCompanionPanel {
-    border-radius: 21px;
-  }
-
-  .emergencyGuideMain {
+    gap: 18px;
     padding: 20px 17px;
+    border-radius: 22px;
+  }
+
+  .emergencyGuideIntro {
+    display: block;
+  }
+
+  .emergencyGuideIntro .automaticBadge {
+    margin-top: 14px;
   }
 
   .emergencyNumbers {
@@ -347,6 +356,19 @@
 
   .emergencyCompanionPanel {
     grid-template-columns: 72px minmax(0, 1fr);
-    padding: 17px 15px;
+    gap: 12px;
+  }
+
+  .emergencyCompanionPanel .atlasCompanion--medium {
+    width: 72px;
+    height: 76px;
+  }
+
+  .companionSpeech strong {
+    font-size: 0.95rem;
+  }
+
+  .companionSpeech p {
+    font-size: 0.79rem;
   }
 }
