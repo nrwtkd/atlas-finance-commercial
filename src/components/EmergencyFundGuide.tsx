@@ -96,10 +96,9 @@ export default function EmergencyFundGuide({
             <span className="eyebrow">DANA DARURAT</span>
             <h2 id="emergency-guide-title">Rasa aman yang sedang kamu bangun.</h2>
             <p>
-              Satu tracker untuk target, setoran, progres, dan penjelasan. Setoran dihitung dari transaksi <strong>Alokasi dana</strong> ke tujuan Dana Darurat—bukan sebagai pengeluaran.
+              Target, setoran, progres, dan penjelasan berada dalam satu tempat. Setoran diperbarui dari transaksi <strong>Alokasi dana</strong> ke tujuan Dana Darurat—bukan dihitung sebagai pengeluaran.
             </p>
           </div>
-          <span className="automaticBadge"><AtlasIcon name="check" size={14} /> Terhubung otomatis</span>
         </div>
 
         {hasEstimate ? (
@@ -150,7 +149,7 @@ export default function EmergencyFundGuide({
         )}
 
         <div className="emergencyActions">
-          <button className="primary" type="button" onClick={onOpenGoals}>Buka tujuan dana darurat</button>
+          <button className="primary" type="button" onClick={onOpenGoals}>Kelola dana darurat</button>
           {hasEstimate && <button className="secondary" type="button" onClick={onOpenBudget}>Periksa dasar hitungan</button>}
         </div>
       </div>
