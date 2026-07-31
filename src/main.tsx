@@ -1,12 +1,14 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
+import LearningExperienceUpgrade from "./components/LearningExperienceUpgrade";
 import "./styles.css";
 import "./login-fit.css";
 import "./experience.css";
 import "./learning.css";
 import "./universal-v3.css";
 import "./learning-rich-v5.css";
+import "./learning-depth-v6.css";
 
 if ("serviceWorker" in navigator && import.meta.env.PROD) {
   window.addEventListener("load", () => {
@@ -19,5 +21,6 @@ if ("serviceWorker" in navigator && import.meta.env.PROD) {
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
+    <LearningExperienceUpgrade />
   </StrictMode>
 );
