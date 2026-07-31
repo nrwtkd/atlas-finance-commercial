@@ -1,0 +1,216 @@
+/* Full learning lessons */
+.richLearningModules {
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.richLearningModule summary {
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: start;
+  padding: 20px 22px;
+}
+
+.richLearningModule summary .moduleNumber {
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
+}
+
+.richLearningModule summary strong {
+  font-size: clamp(20px, 2.5vw, 25px);
+}
+
+.richLearningModule summary small {
+  max-width: 760px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.lessonBody {
+  display: grid;
+  gap: 22px;
+  padding: 4px 22px 24px 90px;
+  border-top: 1px solid var(--line);
+}
+
+.lessonBody > section:first-child {
+  margin-top: 20px;
+}
+
+.lessonLabel {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--terracotta-deep);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .14em;
+}
+
+.lessonOutcomes {
+  padding: 17px 18px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(232,238,227,.9), rgba(255,250,243,.96));
+}
+
+.lessonOutcomes ul,
+.practiceBox ol {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 19px;
+  color: #5f5b58;
+  font-size: 12px;
+  line-height: 1.58;
+}
+
+.lessonExplanation p {
+  max-width: 860px;
+  margin: 0 0 12px;
+  color: #5f5b58;
+  font-size: 13px;
+  line-height: 1.72;
+}
+
+.lessonExplanation p:last-child {
+  margin-bottom: 0;
+}
+
+.conceptGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.conceptGrid article {
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: rgba(255,255,255,.62);
+}
+
+.conceptGrid strong {
+  color: var(--navy);
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.conceptGrid p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.practiceBox {
+  padding: 19px;
+  border: 1px solid rgba(213,143,112,.32);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(242,215,199,.56), rgba(255,250,243,.96));
+}
+
+.practiceBox h4 {
+  margin: 0 0 12px;
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+}
+
+.watchOutBox {
+  padding: 16px 18px;
+  border-left: 4px solid var(--gold);
+  border-radius: 4px 17px 17px 4px;
+  background: rgba(255,242,184,.34);
+}
+
+.watchOutBox strong {
+  color: var(--navy);
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.watchOutBox p {
+  margin: 5px 0 0;
+  color: #665d4b;
+  font-size: 11px;
+  line-height: 1.58;
+}
+
+.reflectionQuestion {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 17px 18px;
+  border-radius: 18px;
+  background: var(--navy);
+  color: white;
+}
+
+.reflectionQuestion > span {
+  display: grid;
+  flex: 0 0 35px;
+  width: 35px;
+  height: 35px;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(255,255,255,.12);
+}
+
+.reflectionQuestion strong {
+  color: white;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.reflectionQuestion p {
+  margin: 5px 0 0;
+  color: rgba(255,255,255,.76);
+  font-size: 12px;
+  line-height: 1.58;
+}
+
+/* Force readable monthly reflection card, even when generic card styles load later */
+.card.monthlyNumbers {
+  background: linear-gradient(145deg, #20304a, #34435e) !important;
+  color: #ffffff !important;
+  border-color: rgba(32,48,74,.38) !important;
+}
+
+.card.monthlyNumbers h3,
+.card.monthlyNumbers strong {
+  color: #ffffff !important;
+}
+
+.card.monthlyNumbers .eyebrow {
+  color: rgba(255,255,255,.74) !important;
+}
+
+.card.monthlyNumbers .monthlyNumberGrid p,
+.card.monthlyNumbers aside {
+  background: rgba(255,255,255,.10) !important;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.card.monthlyNumbers .monthlyNumberGrid span,
+.card.monthlyNumbers aside p {
+  color: rgba(255,255,255,.74) !important;
+}
+
+@media (max-width: 760px) {
+  .lessonBody {
+    padding: 3px 18px 21px;
+  }
+
+  .conceptGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .richLearningModule summary {
+    grid-template-columns: 42px minmax(0, 1fr);
+    padding: 17px;
+  }
+
+  .richLearningModule summary .moduleNumber {
+    width: 40px;
+    height: 40px;
+  }
+}
