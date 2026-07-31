@@ -40,11 +40,15 @@ function plannedEssentialSpending(plan?: BudgetPlan) {
 export default function EmergencyFundGuide({
   finance,
   currentPlan,
+  onAddFunds,
+  onWithdraw,
   onOpenGoals,
   onOpenBudget
 }: {
   finance: FinanceState;
   currentPlan?: BudgetPlan;
+  onAddFunds: () => void;
+  onWithdraw: () => void;
   onOpenGoals: () => void;
   onOpenBudget: () => void;
 }) {
@@ -96,7 +100,7 @@ export default function EmergencyFundGuide({
             <span className="eyebrow">DANA DARURAT</span>
             <h2 id="emergency-guide-title">Rasa aman yang sedang kamu bangun.</h2>
             <p>
-              Target, setoran, progres, dan penjelasan berada dalam satu tempat. Setoran diperbarui dari transaksi <strong>Alokasi dana</strong> ke tujuan Dana Darurat—bukan dihitung sebagai pengeluaran.
+              Dana darurat punya rumah sendiri di sini. Tambahkan dana atau catat pengambilannya dari kartu ini, sehingga tidak tercampur dengan pengeluaran sehari-hari.
             </p>
           </div>
         </div>
@@ -149,7 +153,9 @@ export default function EmergencyFundGuide({
         )}
 
         <div className="emergencyActions">
-          <button className="primary" type="button" onClick={onOpenGoals}>Kelola dana darurat</button>
+          <button className="primary" type="button" onClick={onAddFunds}>Tambah dana</button>
+          {calculation.saved > 0 && <button className="secondary emergencyWithdrawButton" type="button" onClick={onWithdraw}>Terpaksa mengambil</button>}
+          <button className="secondary" type="button" onClick={onOpenGoals}>Atur target</button>
           {hasEstimate && <button className="secondary" type="button" onClick={onOpenBudget}>Periksa dasar hitungan</button>}
         </div>
       </div>
