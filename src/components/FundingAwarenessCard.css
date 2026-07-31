@@ -117,6 +117,34 @@
   font-size: 0.78rem;
 }
 
+.recordBudgetWarning {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 11px;
+  padding: 13px 14px;
+  border: 1px solid rgba(191, 118, 92, 0.24);
+  border-radius: 15px;
+  background: rgba(242, 209, 191, 0.2);
+  color: #1f3152;
+}
+
+.recordBudgetWarning > svg {
+  margin-top: 2px;
+  color: #a55e48;
+}
+
+.recordBudgetWarning strong,
+.recordBudgetWarning p {
+  display: block;
+}
+
+.recordBudgetWarning p {
+  margin: 4px 0 0;
+  color: #6a7279;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
 @media (max-width: 700px) {
   .fundingAwareness {
     grid-template-columns: auto minmax(0, 1fr);
