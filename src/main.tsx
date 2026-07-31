@@ -6,6 +6,7 @@ import "./login-fit.css";
 import "./experience.css";
 import "./learning.css";
 import "./universal-v3.css";
+import "./learning-rich-v5.css";
 
 if ("serviceWorker" in navigator && import.meta.env.PROD) {
   window.addEventListener("load", () => {
