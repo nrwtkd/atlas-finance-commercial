@@ -1,0 +1,253 @@
+.securityCenter {
+  display: grid;
+  gap: 18px;
+  padding: clamp(20px, 3vw, 28px);
+  border-radius: 28px;
+}
+
+.securityStatusGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.securitySignal {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 11px;
+  align-items: start;
+  padding: 15px;
+  border: 1px solid rgba(31,49,82,.1);
+  border-radius: 18px;
+  background: rgba(255,255,255,.54);
+}
+
+.securitySignal > span {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 13px;
+  background: #edf2e9;
+  color: #60785a;
+}
+
+.securitySignal.attention > span {
+  background: #f7e2d6;
+  color: #aa654d;
+}
+
+.securitySignal strong,
+.securitySignal small {
+  display: block;
+}
+
+.securitySignal strong {
+  margin-bottom: 4px;
+  color: #1f3152;
+  font-size: 13px;
+}
+
+.securitySignal small {
+  color: #756d65;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.securityActions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.securityActions button {
+  min-width: 0;
+}
+
+.backupCheckPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(230px, .7fr);
+  gap: 15px;
+  padding: 18px;
+  border: 1px solid rgba(96,120,90,.18);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(230,238,225,.86), rgba(255,251,246,.92));
+}
+
+.backupCheckPanel h4,
+.backupCheckPanel p {
+  margin: 0;
+}
+
+.backupCheckPanel h4 {
+  margin: 5px 0 6px;
+  color: #1f3152;
+  font-size: 16px;
+}
+
+.backupCheckPanel p {
+  color: #6d675f;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.backupCheckForm {
+  display: grid;
+  gap: 9px;
+  align-content: start;
+}
+
+.backupCheckForm label {
+  display: grid;
+  gap: 6px;
+  color: #1f3152;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.backupVerifiedResult {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 13px 15px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.65);
+  color: #52694d;
+}
+
+.backupVerifiedResult strong,
+.backupVerifiedResult small {
+  display: block;
+}
+
+.backupVerifiedResult small {
+  margin-top: 3px;
+  color: #6d675f;
+  line-height: 1.45;
+}
+
+.recoveryGuide,
+.dangerZone {
+  overflow: hidden;
+  border: 1px solid rgba(31,49,82,.1);
+  border-radius: 20px;
+  background: rgba(255,255,255,.45);
+}
+
+.recoveryGuide summary,
+.dangerZone summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 14px 17px;
+  list-style: none;
+  cursor: pointer;
+  color: #1f3152;
+  font-weight: 850;
+}
+
+.recoveryGuide summary::-webkit-details-marker,
+.dangerZone summary::-webkit-details-marker {
+  display: none;
+}
+
+.recoveryGuide summary span:last-child,
+.dangerZone summary span:last-child {
+  margin-left: auto;
+  color: #8b8177;
+}
+
+.recoveryGuide[open] summary,
+.dangerZone[open] summary {
+  border-bottom: 1px solid rgba(31,49,82,.08);
+}
+
+.recoverySteps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 11px;
+  padding: 17px;
+}
+
+.recoverySteps article {
+  display: grid;
+  gap: 7px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255,250,244,.86);
+}
+
+.recoverySteps b {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border-radius: 50%;
+  background: #f2d1bf;
+  color: #1f3152;
+  font-size: 10px;
+}
+
+.recoverySteps strong {
+  color: #1f3152;
+  font-size: 12px;
+}
+
+.recoverySteps p {
+  margin: 0;
+  color: #716960;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.dangerZone {
+  border-color: rgba(166,76,70,.16);
+  background: rgba(255,248,246,.54);
+}
+
+.dangerZoneBody {
+  display: grid;
+  gap: 12px;
+  padding: 17px;
+}
+
+.dangerZoneBody p {
+  margin: 0;
+  color: #766963;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.dangerConfirm {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 9px;
+}
+
+.dangerConfirm input {
+  min-width: 0;
+}
+
+.dangerConfirm button:disabled {
+  opacity: .46;
+}
+
+@media (max-width: 760px) {
+  .securityStatusGrid,
+  .securityActions,
+  .recoverySteps,
+  .backupCheckPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .backupVerifiedResult {
+    grid-column: auto;
+  }
+
+  .dangerConfirm {
+    grid-template-columns: 1fr;
+  }
+}
