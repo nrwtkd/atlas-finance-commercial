@@ -15,12 +15,12 @@ export default function WelcomeJourney({ name, transactionCount, onRecord }: Wel
         <span className="welcomeKicker">SELAMAT DATANG DI ATLAS</span>
         <h2 id="welcome-title">Senang kamu sampai di sini, {name}.</h2>
         <p className="welcomeLead">
-          Kamu tidak harus membereskan semuanya hari ini. Kamu sudah melakukan bagian yang penting:
-          memilih untuk melihat kondisi keuanganmu dengan lebih jernih.
+          Apa pun latar dan kondisi hidupmu sekarang, kamu tidak harus langsung membereskan semuanya.
+          Kamu sudah melakukan bagian yang penting: mulai melihat keuanganmu dengan lebih jernih.
         </p>
         <p>
-          Atlas hadir sebagai ruang yang tenang untuk mencatat, memahami pola, dan bertumbuh tanpa
-          rasa dihakimi. Apa pun kondisimu sekarang, kita mulai dari sana—pelan-pelan, tapi nyata.
+          Atlas dapat digunakan saat kamu masih kuliah, baru punya penghasilan, bekerja lepas,
+          hidup sendiri, membangun keluarga, maupun memasuki masa pensiun. Kita mulai dari keadaanmu—bukan dari standar hidup orang lain.
         </p>
 
         <div className="welcomeTrust">
@@ -36,10 +36,14 @@ export default function WelcomeJourney({ name, transactionCount, onRecord }: Wel
         </button>
       </div>
 
-      <details className="quickGuide" open>
+      <details className="quickGuide">
         <summary>
-          <span aria-hidden="true">☼</span>
-          Baca sebentar sebelum mulai
+          <span className="quickGuideIcon" aria-hidden="true">☼</span>
+          <span className="quickGuideTitle">
+            <strong>Panduan singkat Atlas</strong>
+            <small>Buka saat perlu—tidak harus dibaca sekaligus.</small>
+          </span>
+          <span className="quickGuideChevron" aria-hidden="true">⌄</span>
         </summary>
         <ol>
           <li>
@@ -48,7 +52,11 @@ export default function WelcomeJourney({ name, transactionCount, onRecord }: Wel
           </li>
           <li>
             <strong>Beri konteks, bukan sekadar angka.</strong>
-            <span>Area, aktivitas, dan makna transaksi membantu Atlas membaca hubunganmu dengan uang.</span>
+            <span>Kategori, aktivitas, orang terkait, dan makna transaksi membantu Atlas membaca polamu.</span>
+          </li>
+          <li>
+            <strong>Sesuaikan dengan kehidupanmu.</strong>
+            <span>Kamu dapat menambah orang, kategori, dan aktivitas sendiri. Pilih “Saya” saja bila transaksi hanya berkaitan denganmu.</span>
           </li>
           <li>
             <strong>Gunakan perangkat dan peramban yang sama.</strong>
