@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import LearningExperienceUpgrade from "./components/LearningExperienceUpgrade";
+import InstallAtlasPrompt from "./components/InstallAtlasPrompt";
 import "./styles.css";
 import "./login-fit.css";
 import "./experience.css";
@@ -13,6 +14,7 @@ import "./onboarding-v7.css";
 import "./ui-polish-v7.css";
 import "./ui-polish-v9.css";
 import "./ui-icons-v10.css";
+import "./desktop-scale-v11.css";
 
 if ("serviceWorker" in navigator && import.meta.env.PROD) {
   window.addEventListener("load", () => {
@@ -26,5 +28,6 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
     <LearningExperienceUpgrade />
+    <InstallAtlasPrompt />
   </StrictMode>
 );
