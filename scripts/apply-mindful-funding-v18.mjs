@@ -58,7 +58,7 @@ if (!source.includes('const plannedBucketPercent = bucket ?')) {
 
 if (!source.includes('className="recordBudgetWarning"')) {
   const anchor = '    <label>Catatan<input value={note}';
-  const warning = `    {(outsideBudget || aboveBudget) && <aside className="recordBudgetWarning" role="status"><AtlasIcon name="insight" size={18} /><div><strong>{outsideBudget ? "Pos ini belum masuk anggaran bulan ini." : "Catatan ini akan melewati batas pos."}</strong><p>{outsideBudget ? \`Pergerakan tetap boleh disimpan, tetapi ${bucket} masih memiliki rencana Rp0. Setelah menyimpan, tinjau anggaran agar tujuan ini mendapat porsi yang nyata.\` : \`Setelah catatan ini, penggunaan ${bucket} menjadi ${rupiah.format(projectedBucketUse)} dari rencana ${rupiah.format(plannedBucketLimit)}.\`}</p></div></aside>}\n${anchor}`;
+  const warning = `    {(outsideBudget || aboveBudget) && <aside className="recordBudgetWarning" role="status"><AtlasIcon name="insight" size={18} /><div><strong>{outsideBudget ? "Pos ini belum masuk anggaran bulan ini." : "Catatan ini akan melewati batas pos."}</strong><p>{outsideBudget ? \`Pergerakan tetap boleh disimpan, tetapi \${bucket} masih memiliki rencana Rp0. Setelah menyimpan, tinjau anggaran agar tujuan ini mendapat porsi yang nyata.\` : \`Setelah catatan ini, penggunaan \${bucket} menjadi \${rupiah.format(projectedBucketUse)} dari rencana \${rupiah.format(plannedBucketLimit)}.\`}</p></div></aside>}\n${anchor}`;
   replaceOnce(anchor, warning, "record warning mount");
 }
 
