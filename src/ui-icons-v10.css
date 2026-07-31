@@ -1,0 +1,78 @@
+.welcomeAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.reflectionTabs button,
+.expandedTabs button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.reflectionSnapshot {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(242, 209, 191, .34), transparent 18rem),
+    rgba(255, 251, 246, .96);
+}
+
+.reflectionSnapshotIcon {
+  display: grid;
+  width: 50px;
+  height: 50px;
+  place-items: center;
+  border-radius: 17px;
+  background: #e7efe2;
+  color: #5e7658;
+  box-shadow: 0 10px 22px rgba(96, 120, 90, .13);
+}
+
+.reflectionSnapshotAction strong svg {
+  display: block;
+}
+
+.reflectionTabs button svg,
+.atlasNav button svg,
+.atlasIconButton svg,
+.welcomeAction svg,
+.welcomeBloom svg,
+.welcomeTrust svg,
+.quickGuide svg,
+.reflectionSnapshot svg {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 760px) {
+  .reflectionSnapshot {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .reflectionSnapshotAction {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .reflectionSnapshot {
+    grid-template-columns: 1fr;
+  }
+
+  .reflectionSnapshotIcon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .expandedTabs button {
+    padding-inline: 13px;
+  }
+}
