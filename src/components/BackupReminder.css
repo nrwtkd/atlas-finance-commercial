@@ -1,0 +1,163 @@
+.nightlyBackupReminder {
+  position: fixed;
+  z-index: 42;
+  left: 50%;
+  bottom: 100px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  width: min(calc(100% - 28px), 840px);
+  padding: 17px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255,255,255,.72);
+  border-radius: 23px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(242,209,191,.28), transparent 17rem),
+    rgba(255,250,244,.95);
+  box-shadow: 0 24px 64px rgba(31,49,82,.22);
+  backdrop-filter: blur(22px) saturate(135%);
+  animation: backupReminderEnter 240ms ease both;
+}
+
+@keyframes backupReminderEnter {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.nightlyBackupIcon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 17px;
+  background: #e7efe2;
+  color: #60785a;
+}
+
+.nightlyBackupCopy {
+  min-width: 0;
+}
+
+.nightlyBackupCopy strong {
+  display: block;
+  margin: 4px 0 5px;
+  color: #1f3152;
+  font-size: 16px;
+}
+
+.nightlyBackupCopy p {
+  margin: 0;
+  color: #6d675f;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.nightlyBackupActions {
+  display: flex;
+  gap: 8px;
+}
+
+.nightlyBackupActions button {
+  white-space: nowrap;
+}
+
+.backupReminderSettings {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  margin-top: 17px;
+  padding: 17px;
+  border: 1px solid rgba(31,49,82,.1);
+  border-radius: 19px;
+  background: linear-gradient(145deg, rgba(231,239,226,.72), rgba(255,255,255,.62));
+}
+
+.backupReminderSettingsCopy {
+  display: grid;
+  gap: 5px;
+}
+
+.backupReminderSettingsCopy strong {
+  color: #1f3152;
+  font-size: 14px;
+}
+
+.backupReminderSettingsCopy p,
+.backupReminderSettingsCopy small {
+  margin: 0;
+  color: #6d675f;
+  line-height: 1.5;
+}
+
+.backupReminderSettingsCopy p { font-size: 11px; }
+.backupReminderSettingsCopy small { font-size: 10px; }
+
+.backupReminderControls {
+  display: grid;
+  grid-template-columns: 112px auto;
+  gap: 9px;
+  align-items: center;
+}
+
+.backupReminderControls input {
+  min-height: 45px;
+}
+
+.backupLastSaved {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  margin-top: 8px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.68);
+  color: #60785a;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  .nightlyBackupReminder {
+    grid-template-columns: auto minmax(0, 1fr);
+    bottom: 92px;
+  }
+
+  .nightlyBackupActions {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .backupReminderSettings {
+    grid-template-columns: 1fr;
+  }
+
+  .backupReminderControls {
+    grid-template-columns: 112px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 460px) {
+  .nightlyBackupReminder {
+    width: calc(100% - 18px);
+    padding: 15px;
+    border-radius: 20px;
+  }
+
+  .nightlyBackupIcon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .nightlyBackupCopy strong {
+    font-size: 14px;
+  }
+
+  .nightlyBackupActions,
+  .backupReminderControls {
+    grid-template-columns: 1fr;
+  }
+}
