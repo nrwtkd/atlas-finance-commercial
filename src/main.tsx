@@ -12,6 +12,7 @@ import "./learning-depth-v6.css";
 import "./onboarding-v7.css";
 import "./ui-polish-v7.css";
 import "./ui-polish-v9.css";
+import "./ui-icons-v10.css";
 
 if ("serviceWorker" in navigator && import.meta.env.PROD) {
   window.addEventListener("load", () => {
