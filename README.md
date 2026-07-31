@@ -34,11 +34,11 @@ Di Cloudflare Pages, variabel berikut nanti dimasukkan melalui dashboard:
 
 ```text
 VITE_SUPABASE_URL
-VITE_SUPABASE_ANON_KEY
+VITE_SUPABASE_PUBLISHABLE_KEY
 VITE_APP_ENV
 ```
 
-`VITE_SUPABASE_ANON_KEY` adalah public/anon key. **Service role key tidak boleh masuk ke aplikasi browser atau GitHub.**
+`VITE_SUPABASE_PUBLISHABLE_KEY` aman dipakai di aplikasi browser dan tetap dibatasi oleh Row Level Security. **Secret key atau service-role key tidak boleh masuk ke aplikasi browser maupun GitHub.**
 
 ## Branch
 
