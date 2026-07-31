@@ -51,7 +51,7 @@ if (!source.includes('plan, monthlyTransactions, onOpenGoals')) {
 }
 
 if (!source.includes('const plannedBucketPercent = bucket ?')) {
-  const anchor = '  const availableMembers = Array.from(new Set([...members, ...addedMembers]));';
+  const anchor = 'const bucket = type === "expense" ? inferBudgetBucket(selectedCategory, awareness) : type === "allocation" ? bucketForGoal(selectedGoal) : undefined;';
   const addition = `${anchor}\n  const plannedBucketPercent = bucket ? (plan?.allocations.find((item) => item.bucket === bucket)?.percent ?? 0) : 0;\n  const plannedBucketLimit = plan && bucket ? plan.monthlyIncome * plannedBucketPercent / 100 : 0;\n  const currentBucketUse = bucket ? monthlyTransactions.filter((item) => item.budgetBucket === bucket && (item.type === "expense" || (item.type === "allocation" && item.allocationAction !== "withdrawal"))).reduce((total, item) => total + item.amount, 0) : 0;\n  const projectedBucketUse = currentBucketUse + (Number(amount) || 0);\n  const outsideBudget = Boolean(plan && bucket && plannedBucketPercent === 0 && Number(amount) > 0);\n  const aboveBudget = Boolean(plan && bucket && plannedBucketLimit > 0 && projectedBucketUse > plannedBucketLimit);`;
   replaceOnce(anchor, addition, "record budget calculations");
 }
