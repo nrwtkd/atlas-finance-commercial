@@ -1,0 +1,273 @@
+/* Atlas learning depth v6: real lessons, not two-line summaries */
+
+.learningList.richLearningModules {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.learningCard.richLearningModule {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 250, 243, .98);
+  box-shadow: 0 14px 34px rgba(32, 48, 74, .07);
+}
+
+.learningCard.richLearningModule > summary {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 15px;
+  padding: 22px 24px;
+}
+
+.learningCard.richLearningModule > summary .moduleNumber {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--soft);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.learningCard.richLearningModule > summary h3 {
+  margin: 1px 0 7px;
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(22px, 2.7vw, 29px);
+  line-height: 1.12;
+}
+
+.learningCard.richLearningModule > summary p {
+  max-width: 780px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.58;
+}
+
+.learningCard.richLearningModule > summary > span:last-child {
+  margin-top: 7px;
+  color: var(--terracotta-deep);
+  font-size: 18px;
+}
+
+.learningCard.richLearningModule[open] > summary {
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(145deg, rgba(232, 238, 227, .46), rgba(255, 250, 243, .98));
+}
+
+.learningCard.richLearningModule .moduleBody {
+  display: grid;
+  gap: 0;
+  padding: 0 24px 25px;
+}
+
+.learningCard.richLearningModule .lessonLegacyIntro {
+  display: none;
+}
+
+.richLessonBody {
+  display: grid;
+  gap: 24px;
+  padding: 24px 0 22px;
+}
+
+.richLessonBody section {
+  min-width: 0;
+}
+
+.lessonLabel {
+  display: block;
+  margin-bottom: 11px;
+  color: var(--terracotta-deep);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .15em;
+}
+
+.lessonOutcomes {
+  padding: 18px 20px;
+  border: 1px solid rgba(153, 170, 145, .25);
+  border-radius: 19px;
+  background: linear-gradient(145deg, rgba(232, 238, 227, .92), rgba(255, 250, 243, .96));
+}
+
+.lessonOutcomes ul,
+.lessonExample ul,
+.practiceBox ol {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding-left: 21px;
+  color: #585654;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.lessonExplanation p {
+  max-width: 900px;
+  margin: 0 0 13px;
+  color: #585654;
+  font-size: 14px;
+  line-height: 1.78;
+}
+
+.lessonExplanation p:last-child {
+  margin-bottom: 0;
+}
+
+.conceptGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.conceptGrid article {
+  min-width: 0;
+  padding: 17px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: rgba(255, 255, 255, .7);
+}
+
+.conceptGrid strong {
+  display: block;
+  color: var(--navy);
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.conceptGrid p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.58;
+}
+
+.lessonExample {
+  padding: 19px 20px;
+  border-radius: 19px;
+  background: #f4eee6;
+}
+
+.lessonExample h4,
+.practiceBox h4 {
+  margin: 0 0 12px;
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+}
+
+.practiceBox {
+  padding: 20px;
+  border: 1px solid rgba(213, 143, 112, .34);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(242, 215, 199, .6), rgba(255, 250, 243, .98));
+}
+
+.watchOutBox {
+  padding: 17px 19px;
+  border-left: 4px solid var(--gold);
+  border-radius: 5px 18px 18px 5px;
+  background: rgba(255, 242, 184, .36);
+}
+
+.watchOutBox strong {
+  color: var(--navy);
+  font-size: 13px;
+}
+
+.watchOutBox p {
+  margin: 7px 0 0;
+  color: #655d4c;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.reflectionQuestion {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 19px 20px;
+  border-radius: 19px;
+  background: linear-gradient(145deg, var(--navy), var(--navy-soft));
+  color: white;
+}
+
+.reflectionQuestion > span {
+  display: grid;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .12);
+}
+
+.reflectionQuestion strong {
+  color: white;
+  font-size: 13px;
+}
+
+.reflectionQuestion p {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, .78);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.lessonDisclaimer {
+  margin: -4px 2px 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.learningCard.richLearningModule .moduleBody > button {
+  width: 100%;
+  margin-top: 2px;
+}
+
+@media (max-width: 700px) {
+  .learningCard.richLearningModule > summary {
+    grid-template-columns: 43px minmax(0, 1fr) auto;
+    gap: 11px;
+    padding: 18px 16px;
+  }
+
+  .learningCard.richLearningModule > summary .moduleNumber {
+    width: 41px;
+    height: 41px;
+    border-radius: 14px;
+  }
+
+  .learningCard.richLearningModule > summary h3 {
+    font-size: 21px;
+  }
+
+  .learningCard.richLearningModule .moduleBody {
+    padding: 0 16px 20px;
+  }
+
+  .richLessonBody {
+    gap: 20px;
+    padding-top: 19px;
+  }
+
+  .conceptGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .lessonExplanation p,
+  .lessonOutcomes ul,
+  .lessonExample ul,
+  .practiceBox ol,
+  .reflectionQuestion p {
+    font-size: 12px;
+  }
+}
