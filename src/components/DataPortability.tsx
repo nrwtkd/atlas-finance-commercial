@@ -44,7 +44,7 @@ export default function DataPortability() {
 
     try {
       const vault = await readVault<VaultEnvelope>();
-      if (!vault) throw new Error("Belum ada data lokal yang dapat dibackup.");
+      if (!vault) throw new Error("Belum ada data lokal yang dapat dibuatkan salinan.");
 
       const backup: AtlasBackup = {
         format: "atlas-finance-encrypted-backup",
@@ -58,12 +58,12 @@ export default function DataPortability() {
       const anchor = document.createElement("a");
       const date = new Date().toISOString().slice(0, 10);
       anchor.href = url;
-      anchor.download = `atlas-finance-backup-${date}.atlas.json`;
+      anchor.download = `atlas-finance-cadangan-${date}.atlas.json`;
       anchor.click();
       URL.revokeObjectURL(url);
-      setStatus("Backup terenkripsi berhasil disiapkan.");
+      setStatus("Salinan data terenkripsi berhasil disiapkan.");
     } catch (error) {
-      setStatus(error instanceof Error ? error.message : "Backup gagal dibuat.");
+      setStatus(error instanceof Error ? error.message : "Salinan data gagal dibuat.");
     } finally {
       setBusy(false);
     }
@@ -75,7 +75,7 @@ export default function DataPortability() {
     if (!file) return;
 
     const confirmed = window.confirm(
-      "Impor backup akan mengganti data lokal Atlas di perangkat ini. Lanjutkan?"
+      "Memulihkan salinan akan mengganti data lokal Atlas di perangkat ini. Lanjutkan?"
     );
     if (!confirmed) return;
 
@@ -85,14 +85,14 @@ export default function DataPortability() {
     try {
       const parsed = JSON.parse(await file.text()) as unknown;
       if (!isAtlasBackup(parsed)) {
-        throw new Error("File ini bukan backup Atlas Finance yang valid.");
+        throw new Error("File ini bukan salinan data Atlas Finance yang valid.");
       }
 
       await writeVault(parsed.vault);
-      window.alert("Backup berhasil dipulihkan. Masukkan PIN yang digunakan saat backup dibuat.");
+      window.alert("Salinan data berhasil dipulihkan. Masukkan PIN yang digunakan saat salinan dibuat.");
       window.location.reload();
     } catch (error) {
-      setStatus(error instanceof Error ? error.message : "Backup gagal dipulihkan.");
+      setStatus(error instanceof Error ? error.message : "Salinan data gagal dipulihkan.");
       setBusy(false);
     }
   }
@@ -102,21 +102,21 @@ export default function DataPortability() {
       <div className="portabilityIntro">
         <span className="portabilityIcon" aria-hidden="true">⇄</span>
         <div>
-          <span className="eyebrow">BACKUP LOKAL</span>
+          <span className="eyebrow">SALINAN DATA LOKAL</span>
           <h3>Bawa datamu dengan aman.</h3>
           <p>
-            Ekspor salinan terenkripsi untuk berjaga-jaga, lalu impor kembali saat berpindah browser
-            atau perangkat. Backup tetap terkunci dengan PIN yang digunakan saat dibuat.
+            Ekspor salinan terenkripsi untuk berjaga-jaga, lalu pulihkan kembali saat berpindah
+            peramban atau perangkat. Salinan tetap terkunci dengan PIN yang digunakan saat dibuat.
           </p>
         </div>
       </div>
 
       <div className="portabilityActions">
         <button className="primary" type="button" disabled={busy} onClick={() => void exportBackup()}>
-          {busy ? "Menyiapkan…" : "Ekspor backup"}
+          {busy ? "Menyiapkan…" : "Ekspor salinan"}
         </button>
         <button className="secondary" type="button" disabled={busy} onClick={() => fileInput.current?.click()}>
-          Impor backup
+          Pulihkan salinan
         </button>
         <input
           ref={fileInput}
