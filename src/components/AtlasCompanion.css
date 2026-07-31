@@ -12,26 +12,49 @@
   overflow: visible;
 }
 
-.atlasCompanion--small { width: 72px; height: 77px; }
-.atlasCompanion--medium { width: 104px; height: 111px; }
-.atlasCompanion--large { width: 138px; height: 147px; }
+.atlasCompanion--small { width: 68px; height: 72px; }
+.atlasCompanion--medium { width: 96px; height: 102px; }
+.atlasCompanion--large { width: 124px; height: 132px; }
 
 .companionShadow { fill: rgba(23, 40, 56, 0.13); }
-.companionBody { fill: #173048; stroke: #10283d; stroke-width: 4; }
-.companionRim { fill: #f5eadb; opacity: 0.98; }
-.companionFace { fill: #fffaf2; stroke: rgba(23, 48, 72, 0.13); stroke-width: 2; }
-.companionScarf,
-.companionScarfTail { fill: #c86f54; stroke: #a9533d; stroke-width: 2.5; stroke-linejoin: round; }
-
-.companionCompass circle:first-child {
+.companionHandle {
+  fill: none;
+  stroke: #173048;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+.companionBody {
+  fill: #173048;
+  stroke: #10283d;
+  stroke-width: 4;
+}
+.companionTopPanel { fill: #294965; }
+.companionFace {
+  fill: #fffaf2;
+  stroke: rgba(23, 48, 72, 0.13);
+  stroke-width: 2;
+}
+.companionPocket {
   fill: #dce8df;
   stroke: #4e6d62;
-  stroke-width: 2.5;
+  stroke-width: 2.2;
 }
-.companionCompass path { fill: #c86f54; stroke: #9e4e3a; stroke-width: 1.5; }
-.companionCompass circle:last-child { fill: #173048; }
+.companionStar {
+  fill: #c86f54;
+  stroke: #9e4e3a;
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+.companionScarf,
+.companionScarfTail {
+  fill: #c86f54;
+  stroke: #a9533d;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
 
-.companionEyes,
+.companionEyes circle { fill: #173048; }
+.companionEyes path,
 .companionSmile {
   fill: none;
   stroke: #173048;
@@ -39,13 +62,18 @@
   stroke-linecap: round;
 }
 
-.companionArms path {
+.companionArms path,
+.companionFoot {
   fill: none;
   stroke: #173048;
   stroke-width: 8;
   stroke-linecap: round;
 }
-.companionArms circle { fill: #f5eadb; stroke: #173048; stroke-width: 3; }
+.companionArms circle {
+  fill: #f5eadb;
+  stroke: #173048;
+  stroke-width: 3;
+}
 
 .companionSparkles path {
   fill: none;
@@ -84,7 +112,7 @@
 }
 
 .atlasCompanion--guide .companionFlag {
-  transform-origin: 132px 63px;
+  transform-origin: 135px 61px;
   animation: companionWave 2.8s ease-in-out infinite;
 }
 
