@@ -1,10 +1,30 @@
 {
+  "id": "/",
   "name": "Atlas Finance",
   "short_name": "Atlas",
-  "description": "Pendamping keuangan privat, local-first, dan terarah.",
+  "description": "Pendamping keuangan privat untuk mencatat, merencanakan, belajar, dan bertumbuh.",
+  "lang": "id-ID",
+  "dir": "ltr",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f4f0e8",
-  "theme_color": "#17223b"
+  "orientation": "portrait-primary",
+  "background_color": "#f5efe7",
+  "theme_color": "#1f3152",
+  "categories": ["finance", "productivity", "lifestyle"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/icons/atlas-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/atlas-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
 }
