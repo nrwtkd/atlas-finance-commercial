@@ -35,7 +35,7 @@ function recentlyDismissed() {
 export default function InstallAtlasPrompt() {
   const [installEvent, setInstallEvent] = useState<BeforeInstallPromptEvent | null>(null);
   const [visible, setVisible] = useState(false);
-  const [showIosGuide, setShowIosGuide] = useState(false);
+  const [showGuide, setShowGuide] = useState(false);
   const ios = useMemo(() => typeof navigator !== "undefined" && isIosDevice(), []);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function InstallAtlasPrompt() {
     const onBeforeInstall = (event: Event) => {
       event.preventDefault();
       setInstallEvent(event as BeforeInstallPromptEvent);
-      window.setTimeout(() => setVisible(true), 900);
+      setVisible(true);
     };
 
     const onInstalled = () => {
@@ -58,19 +58,19 @@ export default function InstallAtlasPrompt() {
 
     window.addEventListener("beforeinstallprompt", onBeforeInstall);
     window.addEventListener("appinstalled", onInstalled);
-
-    if (ios) window.setTimeout(() => setVisible(true), 1200);
+    const reveal = window.setTimeout(() => setVisible(true), 1400);
 
     return () => {
+      window.clearTimeout(reveal);
       window.removeEventListener("beforeinstallprompt", onBeforeInstall);
       window.removeEventListener("appinstalled", onInstalled);
     };
-  }, [ios]);
+  }, []);
 
   function dismiss() {
     localStorage.setItem(DISMISS_KEY, String(Date.now()));
     setVisible(false);
-    setShowIosGuide(false);
+    setShowGuide(false);
   }
 
   async function install() {
@@ -83,7 +83,7 @@ export default function InstallAtlasPrompt() {
       }
       return;
     }
-    if (ios) setShowIosGuide(true);
+    setShowGuide(true);
   }
 
   if (!visible || isStandaloneMode()) return null;
@@ -95,18 +95,28 @@ export default function InstallAtlasPrompt() {
       <div className="installAtlasCopy">
         <span className="eyebrow">ATLAS DI LAYAR UTAMAMU</span>
         <strong>Pasang Atlas seperti aplikasi.</strong>
-        <p>Buka lebih cepat dari ikon di HP dan gunakan tanpa mencari tautannya lagi.</p>
-        {showIosGuide && (
+        <p>Buka lebih cepat dari ikon di HP. Setelah dipasang, biasakan masuk melalui ikon Atlas.</p>
+        {showGuide && (
           <div className="iosInstallGuide">
-            <span><b>1</b> Ketuk tombol <strong>Bagikan</strong> di Safari.</span>
-            <span><b>2</b> Pilih <strong>Tambahkan ke Layar Utama</strong>.</span>
-            <span><b>3</b> Ketuk <strong>Tambah</strong>.</span>
+            {ios ? (
+              <>
+                <span><b>1</b> Buka Atlas menggunakan <strong>Safari</strong>.</span>
+                <span><b>2</b> Ketuk <strong>Bagikan</strong>, lalu pilih <strong>Tambahkan ke Layar Utama</strong>.</span>
+                <span><b>3</b> Ketuk <strong>Tambah</strong>.</span>
+              </>
+            ) : (
+              <>
+                <span><b>1</b> Buka menu <strong>⋮</strong> di Chrome.</span>
+                <span><b>2</b> Pilih <strong>Instal aplikasi</strong> atau <strong>Tambahkan ke layar utama</strong>.</span>
+                <span><b>3</b> Konfirmasi pemasangan.</span>
+              </>
+            )}
           </div>
         )}
       </div>
       <button className="installAtlasAction" type="button" onClick={() => void install()}>
         <AtlasIcon name="plus" size={18} />
-        <span>{ios ? (showIosGuide ? "Panduan terbuka" : "Lihat caranya") : "Pasang Atlas"}</span>
+        <span>{installEvent ? "Pasang Atlas" : showGuide ? "Panduan terbuka" : "Lihat caranya"}</span>
       </button>
     </aside>
   );
