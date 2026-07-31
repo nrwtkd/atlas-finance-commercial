@@ -56,21 +56,23 @@ export default function EmergencyFundGuide({
     const planned = plannedEssentialSpending(currentPlan);
     const actual = actualEssentialSpending(finance);
     const monthlyEssentials = planned || actual;
-    const target = monthlyEssentials * targetMonths;
+    const recommendedTarget = monthlyEssentials * targetMonths;
     const emergencyGoal = finance.goals.find((item) => item.type === "emergency" && !item.isArchived);
     const saved = goalBalance(emergencyGoal, finance.transactions);
-    const progressTarget = target || emergencyGoal?.targetAmount || 0;
-    const progress = progressTarget ? Math.min(100, Math.round(saved / progressTarget * 100)) : 0;
+    const manualTarget = emergencyGoal?.targetAmount ?? 0;
+    const target = manualTarget > 0 ? manualTarget : recommendedTarget;
+    const progress = target ? Math.min(100, Math.round(saved / target * 100)) : 0;
     const monthsCovered = monthlyEssentials ? saved / monthlyEssentials : 0;
 
     return {
       targetMonths,
       monthlyEssentials,
+      recommendedTarget,
       target,
+      targetSource: manualTarget > 0 ? "manual" as const : "atlas" as const,
       saved,
       progress,
-      monthsCovered,
-      manualTarget: emergencyGoal?.targetAmount ?? 0
+      monthsCovered
     };
   }, [finance, currentPlan]);
 
@@ -83,37 +85,40 @@ export default function EmergencyFundGuide({
     : reachedFirstMonth
       ? `Hebat, kamu sudah punya sekitar ${calculation.monthsCovered.toFixed(1).replace(".0", "")} bulan ruang bernapas. Kita lanjut pelan-pelan.`
       : calculation.saved > 0
-        ? "Setoran kecil tetap berarti. Kamu sedang membeli lebih banyak waktu untuk dirimu di masa sulit."
+        ? "Setoran kecil tetap berarti. Kamu sedang membeli lebih banyak waktu untuk dirimu saat keadaan berubah."
         : "Kita tidak perlu langsung mengejar angka besar. Target pertama cukup satu bulan kebutuhan wajib.";
 
   return (
-    <section className="emergencyGuide" aria-labelledby="emergency-guide-title">
+    <section className="emergencyGuide card" aria-labelledby="emergency-guide-title">
       <div className="emergencyGuideMain">
         <div className="emergencyGuideIntro">
-          <span className="eyebrow">DANA DARURAT</span>
-          <h2 id="emergency-guide-title">Berapa ruang aman yang perlu kamu kumpulkan?</h2>
-          <p>
-            Atlas menghitung dari kebutuhan pokok dan kewajiban minimum dalam anggaranmu—bukan dari seluruh pemasukan.
-          </p>
+          <div>
+            <span className="eyebrow">DANA DARURAT</span>
+            <h2 id="emergency-guide-title">Rasa aman yang sedang kamu bangun.</h2>
+            <p>
+              Satu tracker untuk target, setoran, progres, dan penjelasan. Setoran dihitung dari transaksi <strong>Alokasi dana</strong> ke tujuan Dana Darurat—bukan sebagai pengeluaran.
+            </p>
+          </div>
+          <span className="automaticBadge"><AtlasIcon name="check" size={14} /> Terhubung otomatis</span>
         </div>
 
         {hasEstimate ? (
           <>
             <div className="emergencyNumbers">
               <article>
+                <span>Sudah terkumpul</span>
+                <strong>{rupiah.format(calculation.saved)}</strong>
+                <small>{calculation.monthsCovered > 0 ? `Setara ${calculation.monthsCovered.toFixed(1)} bulan kebutuhan wajib` : "Mulai dari nominal yang mungkin"}</small>
+              </article>
+              <article className="emergencyTargetNumber">
+                <span>{calculation.targetSource === "manual" ? "Target pilihanmu" : "Target perlindungan Atlas"}</span>
+                <strong>{rupiah.format(calculation.target)}</strong>
+                <small>{calculation.targetSource === "manual" ? "Mengikuti target pada tujuan Dana Darurat" : `${calculation.targetMonths} bulan × kebutuhan wajib`}</small>
+              </article>
+              <article>
                 <span>Kebutuhan wajib per bulan</span>
                 <strong>{rupiah.format(calculation.monthlyEssentials)}</strong>
                 <small>Kebutuhan pokok + kewajiban minimum</small>
-              </article>
-              <article className="emergencyTargetNumber">
-                <span>Target perlindungan Atlas</span>
-                <strong>{rupiah.format(calculation.target)}</strong>
-                <small>{calculation.targetMonths} bulan × kebutuhan wajib</small>
-              </article>
-              <article>
-                <span>Sudah terkumpul</span>
-                <strong>{rupiah.format(calculation.saved)}</strong>
-                <small>{calculation.monthsCovered > 0 ? `Setara ${calculation.monthsCovered.toFixed(1)} bulan` : "Mulai dari nominal yang mungkin"}</small>
               </article>
             </div>
 
@@ -122,14 +127,14 @@ export default function EmergencyFundGuide({
               <div className="emergencyProgressTrack"><i style={{ width: `${calculation.progress}%` }} /></div>
               <div className="emergencyMilestones">
                 <span className={calculation.monthsCovered >= 1 ? "reached" : ""}>1 bulan</span>
-                <span className={calculation.monthsCovered >= Math.ceil(calculation.targetMonths / 2) ? "reached" : ""}>Setengah jalan</span>
-                <span className={reachedTarget ? "reached" : ""}>{calculation.targetMonths} bulan</span>
+                <span className={calculation.progress >= 50 ? "reached" : ""}>Setengah jalan</span>
+                <span className={reachedTarget ? "reached" : ""}>Target penuh</span>
               </div>
             </div>
 
-            {calculation.manualTarget > 0 && calculation.manualTarget !== calculation.target && (
+            {calculation.targetSource === "manual" && calculation.recommendedTarget > 0 && calculation.target !== calculation.recommendedTarget && (
               <p className="emergencyManualTarget">
-                Target yang pernah kamu pasang: <strong>{rupiah.format(calculation.manualTarget)}</strong>. Kamu boleh menyesuaikannya setelah menilai kebutuhan nyata.
+                Rekomendasi Atlas berdasarkan kondisi dan anggaranmu saat ini adalah <strong>{rupiah.format(calculation.recommendedTarget)}</strong>. Target pilihanmu tetap dipakai sebagai dasar tracker.
               </p>
             )}
           </>
@@ -151,7 +156,7 @@ export default function EmergencyFundGuide({
       </div>
 
       <aside className="emergencyCompanionPanel">
-        <AtlasCompanion mood={reachedTarget || calculation.saved > 0 ? "cheer" : "guide"} size="large" />
+        <AtlasCompanion mood={reachedTarget || calculation.saved > 0 ? "cheer" : "guide"} size="medium" />
         <div className="companionSpeech">
           <span className="eyebrow">TALA, TEMAN ATLAS</span>
           <strong>{reachedTarget ? "Ruang amanmu sudah terbentuk!" : "Aku jadi tim hore-mu."}</strong>
@@ -167,7 +172,7 @@ export default function EmergencyFundGuide({
               <li>Membayar kebutuhan kesehatan mendadak yang penting.</li>
               <li>Menangani perbaikan penting agar rumah, kendaraan kerja, atau penghasilan tetap berjalan.</li>
             </ul>
-            <p className="emergencyNotFor"><strong>Bukan untuk:</strong> liburan, diskon mendadak, atau tagihan tahunan yang sebenarnya sudah dapat diperkirakan.</p>
+            <p className="emergencyNotFor"><strong>Bukan untuk:</strong> liburan, diskon mendadak, keinginan spontan, atau tagihan tahunan yang sebenarnya sudah dapat diperkirakan.</p>
           </div>
         </details>
       </aside>
