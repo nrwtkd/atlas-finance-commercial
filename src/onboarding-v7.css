@@ -1,0 +1,451 @@
+.financialOnboarding {
+  min-height: 100dvh;
+  padding: 28px 18px 44px;
+  color: var(--navy);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(213,143,112,.19), transparent 30rem),
+    radial-gradient(circle at 0% 100%, rgba(153,170,145,.15), transparent 28rem),
+    var(--cream);
+}
+
+.onboardingShell {
+  width: min(100%, 1040px);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  background: rgba(255,250,243,.96);
+  box-shadow: 0 26px 70px rgba(55,42,34,.11);
+}
+
+.onboardingHeader,
+.onboardingFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 26px;
+}
+
+.onboardingHeader {
+  border-bottom: 1px solid var(--line);
+  background: rgba(255,250,243,.82);
+}
+
+.onboardingBrand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.onboardingBrand > span {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 15px;
+  background: var(--navy);
+  color: white;
+  font-family: Georgia, serif;
+  font-size: 24px;
+}
+
+.onboardingBrand > div {
+  display: grid;
+  gap: 3px;
+}
+
+.onboardingBrand b {
+  font-size: 11px;
+  letter-spacing: .16em;
+}
+
+.onboardingBrand small,
+.onboardingProgress span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.onboardingProgress {
+  width: min(250px, 40vw);
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+}
+
+.onboardingProgress > div {
+  width: 100%;
+  height: 7px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #e9e1d8;
+}
+
+.onboardingProgress i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--sage), var(--terracotta));
+  transition: width .25s ease;
+}
+
+.onboardingStep {
+  min-height: 590px;
+  padding: clamp(26px, 5vw, 52px);
+}
+
+.onboardingIntro {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+.onboardingIntro h1 {
+  margin: 9px 0 13px;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.04;
+}
+
+.onboardingIntro p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.68;
+}
+
+.choiceGrid,
+.priorityGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.choiceGrid.twoColumns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.choiceCard {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  min-width: 0;
+  min-height: 116px;
+  padding: 17px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255,255,255,.66);
+  color: var(--navy);
+  text-align: left;
+  transition: transform .16s ease, border-color .16s ease, background .16s ease, box-shadow .16s ease;
+}
+
+.choiceCard:hover {
+  transform: translateY(-1px);
+  border-color: rgba(213,143,112,.55);
+}
+
+.choiceCard.active {
+  border-color: rgba(153,170,145,.72);
+  background: linear-gradient(145deg, rgba(232,238,227,.95), rgba(255,250,243,.96));
+  box-shadow: 0 10px 24px rgba(76,95,69,.08);
+}
+
+.choiceCard strong {
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.choiceCard span {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.chipChoiceGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.onboardingChip {
+  min-height: 43px;
+  padding: 10px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: white;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.onboardingChip.active {
+  border-color: rgba(153,170,145,.65);
+  background: var(--sage-soft);
+  color: #52664d;
+}
+
+.dependentsField {
+  max-width: 540px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(255,255,255,.58);
+  font-size: 13px;
+}
+
+.dependentsField > div {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin: 16px 0 8px;
+}
+
+.dependentsField button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--navy);
+  font-size: 22px;
+}
+
+.dependentsField strong {
+  min-width: 34px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.dependentsField small {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.onboardingSplit {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.onboardingSplit fieldset,
+.budgetStyleField {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+}
+
+.onboardingSplit legend,
+.budgetStyleField legend {
+  padding: 0 8px;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.onboardingSplit .choiceCard,
+.budgetStyleField .choiceCard {
+  min-height: 92px;
+}
+
+.priorityGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.budgetStyleField {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 22px;
+}
+
+.budgetStyleField legend {
+  grid-column: 1 / -1;
+}
+
+.recommendationPreview,
+.personalBudgetRecommendation {
+  margin-top: 24px;
+  padding: clamp(20px, 4vw, 28px);
+  border: 1px solid rgba(213,143,112,.28);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(213,143,112,.16), transparent 15rem),
+    linear-gradient(145deg, rgba(255,250,243,.98), rgba(245,237,226,.94));
+}
+
+.recommendationPreview h2,
+.personalBudgetRecommendation h3 {
+  margin: 7px 0 8px;
+  font-size: 25px;
+}
+
+.recommendationPreview p,
+.personalBudgetRecommendation p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.recommendationPercentages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 18px 0 12px;
+}
+
+.recommendationPercentages p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255,255,255,.68);
+}
+
+.recommendationPercentages span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.recommendationPercentages strong {
+  color: var(--navy);
+  font-size: 13px;
+}
+
+.recommendationPreview > small {
+  color: var(--terracotta-deep);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.onboardingFooter {
+  border-top: 1px solid var(--line);
+  background: rgba(248,241,232,.74);
+}
+
+.onboardingFooter .primary,
+.onboardingFooter .secondary {
+  width: auto;
+  min-width: 150px;
+}
+
+.personalBudgetRecommendation {
+  margin: 0 0 2px;
+}
+
+.personalBudgetRecommendation ul {
+  display: grid;
+  gap: 7px;
+  margin: 14px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.personalBudgetRecommendation .emergencyHint {
+  display: inline-flex;
+  margin-top: 13px;
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: var(--sage-soft);
+  color: #5d7057;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.profileContextCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 22px;
+  border-radius: 23px;
+}
+
+.profileContextCard h3 {
+  margin: 6px 0;
+  font-size: 22px;
+}
+
+.profileContextCard p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.profileContextCard .secondary {
+  white-space: nowrap;
+}
+
+@media (max-width: 780px) {
+  .choiceGrid,
+  .choiceGrid.twoColumns,
+  .priorityGrid,
+  .budgetStyleField,
+  .recommendationPercentages {
+    grid-template-columns: 1fr;
+  }
+
+  .onboardingSplit {
+    grid-template-columns: 1fr;
+  }
+
+  .onboardingStep {
+    min-height: auto;
+  }
+
+  .profileContextCard {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .financialOnboarding {
+    padding: 0;
+  }
+
+  .onboardingShell {
+    min-height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .onboardingHeader,
+  .onboardingFooter {
+    padding: 15px 16px;
+  }
+
+  .onboardingHeader {
+    align-items: flex-start;
+  }
+
+  .onboardingProgress {
+    width: 42%;
+  }
+
+  .onboardingBrand small {
+    display: none;
+  }
+
+  .onboardingStep {
+    padding: 25px 17px 32px;
+  }
+
+  .onboardingIntro h1 {
+    font-size: 34px;
+  }
+
+  .choiceCard {
+    min-height: 96px;
+  }
+
+  .onboardingFooter .primary,
+  .onboardingFooter .secondary {
+    min-width: 0;
+    flex: 1;
+  }
+}
