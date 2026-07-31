@@ -39,7 +39,7 @@ export const awarenessOptions: Array<{
   {
     value: "Protection",
     label: "Perlindungan",
-    description: "Menjaga keluarga dari guncangan keuangan yang tidak terduga.",
+    description: "Menjaga diri dan orang yang menjadi tanggung jawabmu dari guncangan keuangan yang tidak terduga.",
     example: "Contoh: dana darurat, asuransi, pemeriksaan kesehatan pencegahan."
   },
   {
@@ -67,12 +67,17 @@ export const expenseCategories: Array<{
   {
     name: "Makan dan minum",
     bucket: "Kebutuhan pokok",
-    activities: ["Belanja bahan makanan", "Makan di luar", "Jajan dan minuman", "Bekal", "Acara keluarga"]
+    activities: ["Belanja bahan makanan", "Makan di luar", "Jajan dan minuman", "Bekal", "Acara bersama"]
   },
   {
-    name: "Rumah dan tempat tinggal",
+    name: "Tempat tinggal",
     bucket: "Kebutuhan pokok",
-    activities: ["Sewa atau KPR", "Listrik", "Air", "Internet", "Gas", "Perawatan rumah", "Perabot dan perlengkapan"]
+    activities: ["Sewa atau KPR", "Listrik", "Air", "Internet rumah", "Gas", "Perawatan tempat tinggal", "Perabot dan perlengkapan"]
+  },
+  {
+    name: "Kebutuhan pribadi dan komunikasi",
+    bucket: "Kebutuhan pokok",
+    activities: ["Pulsa dan paket data", "Perlengkapan mandi", "Pakaian dasar", "Laundry", "Dokumen pribadi", "Kebutuhan harian lainnya"]
   },
   {
     name: "Transportasi",
@@ -87,17 +92,17 @@ export const expenseCategories: Array<{
   {
     name: "Pendidikan dan pengembangan",
     bucket: "Kebutuhan pokok",
-    activities: ["Uang sekolah atau kuliah", "Buku dan alat belajar", "Kursus", "Pelatihan", "Sertifikasi", "Kegiatan sekolah"]
+    activities: ["Uang sekolah atau kuliah", "Buku dan alat belajar", "Kursus", "Pelatihan", "Sertifikasi", "Kegiatan belajar"]
   },
   {
     name: "Pekerjaan dan usaha",
     bucket: "Kebutuhan pokok",
-    activities: ["Peralatan kerja", "Aplikasi dan langganan", "Bahan usaha", "Promosi", "Perjalanan dinas", "Administrasi usaha"]
+    activities: ["Peralatan kerja", "Aplikasi dan langganan", "Bahan usaha", "Promosi", "Perjalanan kerja", "Administrasi usaha"]
   },
   {
     name: "Tagihan dan kewajiban",
     bucket: "Kewajiban dan utang",
-    activities: ["Cicilan rumah", "Cicilan kendaraan", "Kartu kredit", "Pinjaman", "Iuran wajib", "Pajak", "Kewajiban keluarga"]
+    activities: ["Cicilan tempat tinggal", "Cicilan kendaraan", "Kartu kredit", "Pinjaman", "Iuran wajib", "Pajak", "Kewajiban kepada orang lain"]
   },
   {
     name: "Dana darurat dan perlindungan",
@@ -107,7 +112,7 @@ export const expenseCategories: Array<{
   {
     name: "Tujuan dan investasi",
     bucket: "Tujuan masa depan",
-    activities: ["Dana pendidikan", "Dana rumah", "Dana kendaraan", "Dana pensiun", "Dana ibadah", "Dana liburan", "Investasi sesuai tujuan", "Tabungan tujuan lainnya"]
+    activities: ["Dana pendidikan", "Dana tempat tinggal", "Dana kendaraan", "Dana pensiun", "Dana ibadah", "Dana liburan", "Investasi sesuai tujuan", "Tabungan tujuan lainnya"]
   },
   {
     name: "Keinginan dan gaya hidup",
@@ -115,17 +120,19 @@ export const expenseCategories: Array<{
     activities: ["Hiburan", "Hobi", "Belanja pribadi", "Perawatan diri", "Nongkrong", "Liburan", "Hadiah untuk diri"]
   },
   {
-    name: "Berbagi dan ibadah",
+    name: "Relasi, berbagi, dan ibadah",
     bucket: "Berbagi dan ibadah",
-    activities: ["Zakat", "Infak", "Sedekah", "Hadiah", "Bantuan keluarga", "Kegiatan sosial", "Donasi"]
+    activities: ["Zakat", "Infak", "Sedekah", "Hadiah", "Bantuan kepada orang lain", "Kegiatan sosial", "Donasi", "Acara relasi"]
   }
 ];
 
 export const incomeCategories = [
+  "Uang saku atau dukungan keluarga",
   "Gaji atau upah",
   "Pendapatan usaha",
   "Proyek atau pekerjaan lepas",
   "Bonus atau THR",
+  "Beasiswa",
   "Hasil investasi",
   "Pemberian",
   "Pengembalian dana",
@@ -138,6 +145,19 @@ export const budgetScenarios: Array<{
   description: string;
   allocations: BudgetAllocation[];
 }> = [
+  {
+    value: "belajar_mengelola",
+    label: "Belajar mengelola uang",
+    description: "Cocok untuk pelajar, mahasiswa, atau siapa pun yang baru mulai mengatur uang saku dan pemasukan kecil secara mandiri.",
+    allocations: [
+      { bucket: "Kebutuhan pokok", percent: 55 },
+      { bucket: "Kewajiban dan utang", percent: 5 },
+      { bucket: "Dana darurat dan perlindungan", percent: 15 },
+      { bucket: "Tujuan masa depan", percent: 10 },
+      { bucket: "Keinginan dan gaya hidup", percent: 10 },
+      { bucket: "Berbagi dan ibadah", percent: 5 }
+    ]
+  },
   {
     value: "seimbang",
     label: "Mulai seimbang",
@@ -180,11 +200,24 @@ export const budgetScenarios: Array<{
   {
     value: "penghasilan_tidak_tetap",
     label: "Penghasilan tidak tetap",
-    description: "Mengutamakan kebutuhan pokok dan cadangan agar bulan dengan pemasukan rendah tetap lebih terlindungi.",
+    description: "Cocok untuk pekerja lepas, pelaku usaha, pekerja musiman, atau siapa pun yang pemasukannya berubah dari bulan ke bulan.",
     allocations: [
       { bucket: "Kebutuhan pokok", percent: 55 },
       { bucket: "Kewajiban dan utang", percent: 15 },
       { bucket: "Dana darurat dan perlindungan", percent: 15 },
+      { bucket: "Tujuan masa depan", percent: 5 },
+      { bucket: "Keinginan dan gaya hidup", percent: 5 },
+      { bucket: "Berbagi dan ibadah", percent: 5 }
+    ]
+  },
+  {
+    value: "jaga_stabilitas",
+    label: "Jaga kestabilan",
+    description: "Cocok ketika penghasilan sudah terbatas atau tetap, termasuk masa pensiun, dan fokus utamanya menjaga kebutuhan serta perlindungan.",
+    allocations: [
+      { bucket: "Kebutuhan pokok", percent: 55 },
+      { bucket: "Kewajiban dan utang", percent: 10 },
+      { bucket: "Dana darurat dan perlindungan", percent: 20 },
       { bucket: "Tujuan masa depan", percent: 5 },
       { bucket: "Keinginan dan gaya hidup", percent: 5 },
       { bucket: "Berbagi dan ibadah", percent: 5 }
