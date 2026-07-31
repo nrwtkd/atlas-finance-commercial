@@ -5,7 +5,7 @@ const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 const ITERATIONS = 310000;
 
-interface VaultEnvelope {
+export interface VaultEnvelope {
   version: 1;
   salt: string;
   iv: string;
@@ -52,6 +52,21 @@ async function deriveKey(pin: string, salt: Uint8Array): Promise<CryptoKey> {
   );
 }
 
+export async function decryptVaultEnvelope(pin: string, envelope: VaultEnvelope): Promise<FinanceState> {
+  const key = await deriveKey(pin, base64ToBytes(envelope.salt));
+
+  try {
+    const decrypted = await crypto.subtle.decrypt(
+      { name: "AES-GCM", iv: toArrayBuffer(base64ToBytes(envelope.iv)) },
+      key,
+      toArrayBuffer(base64ToBytes(envelope.ciphertext))
+    );
+    return JSON.parse(decoder.decode(decrypted)) as FinanceState;
+  } catch {
+    throw new Error("PIN tidak cocok atau salinan tidak dapat dibuka.");
+  }
+}
+
 export async function vaultExists(): Promise<boolean> {
   return Boolean(await readVault<VaultEnvelope>());
 }
@@ -78,17 +93,5 @@ export async function saveFinanceState(pin: string, state: FinanceState): Promis
 export async function loadFinanceState(pin: string): Promise<FinanceState | null> {
   const envelope = await readVault<VaultEnvelope>();
   if (!envelope) return null;
-
-  const key = await deriveKey(pin, base64ToBytes(envelope.salt));
-
-  try {
-    const decrypted = await crypto.subtle.decrypt(
-      { name: "AES-GCM", iv: toArrayBuffer(base64ToBytes(envelope.iv)) },
-      key,
-      toArrayBuffer(base64ToBytes(envelope.ciphertext))
-    );
-    return JSON.parse(decoder.decode(decrypted)) as FinanceState;
-  } catch {
-    throw new Error("PIN salah atau data lokal tidak dapat dibuka.");
-  }
+  return decryptVaultEnvelope(pin, envelope);
 }
