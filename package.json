@@ -1,15 +1,13 @@
 {
   "name": "atlas-finance-commercial",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "engines": {
     "node": ">=20.19.0"
   },
   "scripts": {
-    "predev": "node scripts/apply-atlas-experience.mjs",
     "dev": "vite",
-    "prebuild": "node scripts/apply-atlas-experience.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -b --pretty false"
