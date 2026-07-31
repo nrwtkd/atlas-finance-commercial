@@ -55,6 +55,8 @@ export type EmergencyFundLevel = "none" | "under_one" | "one_to_three" | "over_t
 export type FinancialPriority = "understand" | "budget" | "emergency" | "debt" | "goal" | "learn";
 export type BudgetStyle = "structured" | "balanced" | "flexible";
 
+export type MonthCloseAction = "carry" | "emergency" | "goal" | "debt" | "split";
+
 export type MoneyEmotion =
   | "calm"
   | "safe"
@@ -188,6 +190,13 @@ export interface MonthlyReflection {
   worthIt: string;
   patternToChange: string;
   nextStep: string;
+  closedAt?: string;
+  closingAvailable?: number;
+  remainingAction?: MonthCloseAction;
+  remainingAmount?: number;
+  remainingGoalId?: string;
+  generatedTransactionIds?: string[];
+  nextMonthPlanId?: string;
   createdAt: string;
   updatedAt: string;
 }
