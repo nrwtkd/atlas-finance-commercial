@@ -1,0 +1,50 @@
+.goalSnapshotOther .goalSnapshotHead h2 {
+  max-width: 620px;
+}
+
+.goalSnapshotEmpty {
+  display: grid;
+  gap: 8px;
+  padding: 22px;
+  border: 1px dashed rgba(31, 49, 82, 0.16);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.48);
+}
+
+.goalSnapshotEmpty strong {
+  color: #1f3152;
+  font-size: 1rem;
+}
+
+.goalSnapshotEmpty p {
+  margin: 0;
+  color: #68747e;
+  line-height: 1.55;
+}
+
+.goalSnapshotEmpty button {
+  width: fit-content;
+  margin-top: 4px;
+}
+
+.budgetSnapshotNumbers {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.atlasList .value strong.allocation {
+  color: #60785a;
+}
+
+.atlasList article small {
+  line-height: 1.45;
+}
+
+@media (max-width: 700px) {
+  .budgetSnapshotNumbers {
+    grid-template-columns: 1fr;
+  }
+
+  .goalSnapshotEmpty button {
+    width: 100%;
+  }
+}
