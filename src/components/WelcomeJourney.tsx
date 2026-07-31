@@ -48,19 +48,19 @@ export default function WelcomeJourney({ name, transactionCount, onRecord }: Wel
           </li>
           <li>
             <strong>Beri konteks, bukan sekadar angka.</strong>
-            <span>Area, aktivitas, dan kesadaran membantu Atlas membaca hubunganmu dengan uang.</span>
+            <span>Area, aktivitas, dan makna transaksi membantu Atlas membaca hubunganmu dengan uang.</span>
           </li>
           <li>
-            <strong>Gunakan perangkat dan browser yang sama.</strong>
+            <strong>Gunakan perangkat dan peramban yang sama.</strong>
             <span>Data lokal tidak otomatis berpindah ketika kamu membuka Atlas di perangkat lain.</span>
           </li>
           <li>
-            <strong>Simpan backup secara berkala.</strong>
-            <span>Buka menu Ruangku untuk mengekspor atau memulihkan backup terenkripsi.</span>
+            <strong>Simpan salinan cadangan secara berkala.</strong>
+            <span>Buka menu Ruangku untuk mengekspor atau memulihkan salinan data terenkripsi.</span>
           </li>
           <li>
             <strong>Jaga PIN lokalmu.</strong>
-            <span>PIN tidak disimpan oleh Atlas dan diperlukan untuk membuka backup terenkripsi.</span>
+            <span>PIN tidak disimpan oleh Atlas dan diperlukan untuk membuka salinan data terenkripsi.</span>
           </li>
         </ol>
       </details>
