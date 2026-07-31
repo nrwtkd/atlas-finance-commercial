@@ -1,0 +1,109 @@
+.atlasCompanion {
+  display: inline-flex;
+  flex: 0 0 auto;
+  line-height: 0;
+  filter: drop-shadow(0 12px 18px rgba(23, 40, 56, 0.14));
+}
+
+.atlasCompanion svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.atlasCompanion--small { width: 72px; height: 77px; }
+.atlasCompanion--medium { width: 104px; height: 111px; }
+.atlasCompanion--large { width: 138px; height: 147px; }
+
+.companionShadow { fill: rgba(23, 40, 56, 0.13); }
+.companionBody { fill: #173048; stroke: #10283d; stroke-width: 4; }
+.companionRim { fill: #f5eadb; opacity: 0.98; }
+.companionFace { fill: #fffaf2; stroke: rgba(23, 48, 72, 0.13); stroke-width: 2; }
+.companionScarf,
+.companionScarfTail { fill: #c86f54; stroke: #a9533d; stroke-width: 2.5; stroke-linejoin: round; }
+
+.companionCompass circle:first-child {
+  fill: #dce8df;
+  stroke: #4e6d62;
+  stroke-width: 2.5;
+}
+.companionCompass path { fill: #c86f54; stroke: #9e4e3a; stroke-width: 1.5; }
+.companionCompass circle:last-child { fill: #173048; }
+
+.companionEyes,
+.companionSmile {
+  fill: none;
+  stroke: #173048;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+.companionArms path {
+  fill: none;
+  stroke: #173048;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+.companionArms circle { fill: #f5eadb; stroke: #173048; stroke-width: 3; }
+
+.companionSparkles path {
+  fill: none;
+  stroke: #c86f54;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.companionFlag path:first-child {
+  fill: none;
+  stroke: #173048;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+.companionFlag path:last-child {
+  fill: #dce8df;
+  stroke: #4e6d62;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.companionQuestion {
+  fill: none;
+  stroke: #c86f54;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.atlasCompanion--cheer {
+  animation: companionFloat 3.4s ease-in-out infinite;
+}
+
+.atlasCompanion--cheer .companionSparkles {
+  transform-origin: center;
+  animation: companionSparkle 2.2s ease-in-out infinite;
+}
+
+.atlasCompanion--guide .companionFlag {
+  transform-origin: 132px 63px;
+  animation: companionWave 2.8s ease-in-out infinite;
+}
+
+@keyframes companionFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes companionSparkle {
+  0%, 100% { opacity: 0.55; transform: scale(0.92); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+@keyframes companionWave {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-4deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atlasCompanion,
+  .atlasCompanion * { animation: none !important; }
+}
