@@ -30,7 +30,6 @@ async function showDeviceNotification() {
         icon: "/icons/atlas-icon.svg",
         badge: "/icons/atlas-icon.svg",
         tag: "atlas-nightly-backup",
-        renotify: false,
         data: { url: "/" }
       });
       localStorage.setItem(BACKUP_NOTIFICATION_DATE_KEY, today);
