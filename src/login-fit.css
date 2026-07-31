@@ -1,0 +1,252 @@
+/*
+ * Login viewport fit
+ * Keeps the complete commercial landing/login experience visible on a
+ * standard laptop at 100% browser zoom, without shrinking the mobile layout.
+ */
+
+@media (min-width: 861px) {
+  .loginPage {
+    width: min(100% - 44px, 1180px);
+    height: 100dvh;
+    min-height: 0;
+    padding: 18px 0 14px;
+    grid-template-columns: minmax(0, 1.08fr) minmax(350px, .76fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+    column-gap: clamp(32px, 5vw, 68px);
+    row-gap: 8px;
+    align-items: center;
+  }
+
+  .brandLockup {
+    margin-bottom: 18px;
+  }
+
+  .loginMark {
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    font-size: 29px;
+  }
+
+  .brandLockup .eyebrow {
+    margin-bottom: 3px;
+  }
+
+  .brandByline {
+    font-size: 12px;
+  }
+
+  .loginHero h1 {
+    margin-bottom: 14px;
+    font-size: clamp(40px, 3.9vw, 54px);
+    line-height: .94;
+    letter-spacing: -.028em;
+  }
+
+  .loginHero h1 em {
+    margin-top: 7px;
+  }
+
+  .heroLead {
+    max-width: 590px;
+    margin-bottom: 14px;
+    font-size: clamp(14px, 1.18vw, 16px);
+    line-height: 1.5 !important;
+  }
+
+  .privacyPromise {
+    gap: 10px;
+    padding: 9px 13px 9px 9px;
+    border-radius: 15px;
+  }
+
+  .promiseIcon {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+
+  .promiseIcon svg,
+  .journeyIcon svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .privacyPromise strong {
+    font-size: 12px;
+  }
+
+  .privacyPromise small {
+    font-size: 10px;
+  }
+
+  .loginCard {
+    gap: 13px;
+    padding: 23px;
+    border-radius: 25px;
+  }
+
+  .loginCard::before {
+    inset: 8px;
+    border-radius: 18px;
+  }
+
+  .cardIntro {
+    gap: 11px;
+  }
+
+  .journeyIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 13px;
+  }
+
+  .cardIntro h2 {
+    margin-bottom: 5px;
+    font-size: clamp(23px, 1.9vw, 27px);
+    line-height: 1.04;
+  }
+
+  .cardIntro p {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .googleButton,
+  .loginForm input,
+  .loginSubmit {
+    min-height: 47px;
+  }
+
+  .googleButton {
+    border-radius: 14px;
+  }
+
+  .googleMark {
+    width: 23px;
+    height: 23px;
+    font-size: 13px;
+  }
+
+  .divider {
+    gap: 10px;
+  }
+
+  .loginForm {
+    gap: 10px;
+  }
+
+  .loginForm input {
+    padding-block: 10px;
+  }
+
+  .loginSubmit {
+    border-radius: 14px;
+  }
+
+  .loginHelper {
+    font-size: 10px;
+    line-height: 1.42;
+  }
+
+  .loginMessage {
+    padding: 9px 11px;
+    font-size: 11px;
+  }
+
+  .authClosing {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+}
+
+/* Extra compression for common 1366×768 laptops whose browser chrome leaves
+   roughly 600–650 px of usable page height. */
+@media (min-width: 861px) and (max-height: 720px) {
+  .loginPage {
+    width: min(100% - 36px, 1200px);
+    padding: 10px 0 8px;
+    column-gap: clamp(28px, 4.5vw, 58px);
+    row-gap: 3px;
+  }
+
+  .brandLockup {
+    margin-bottom: 12px;
+  }
+
+  .loginMark {
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    font-size: 26px;
+  }
+
+  .loginHero h1 {
+    margin-bottom: 10px;
+    font-size: clamp(36px, 3.55vw, 48px);
+    line-height: .93;
+  }
+
+  .loginHero h1 em {
+    margin-top: 5px;
+  }
+
+  .heroLead {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.42 !important;
+  }
+
+  .privacyPromise {
+    padding: 7px 11px 7px 7px;
+  }
+
+  .promiseIcon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .loginCard {
+    gap: 10px;
+    padding: 19px 20px;
+    border-radius: 23px;
+  }
+
+  .cardIntro h2 {
+    font-size: 23px;
+  }
+
+  .cardIntro p {
+    font-size: 11px;
+    line-height: 1.38;
+  }
+
+  .journeyIcon {
+    width: 37px;
+    height: 37px;
+  }
+
+  .googleButton,
+  .loginForm input,
+  .loginSubmit {
+    min-height: 43px;
+  }
+
+  .loginForm {
+    gap: 8px;
+  }
+
+  .loginForm label {
+    gap: 5px;
+    font-size: 11px;
+  }
+
+  .loginHelper {
+    font-size: 9.5px;
+  }
+
+  .authClosing {
+    font-size: 12px;
+  }
+}
