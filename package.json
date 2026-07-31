@@ -1,29 +1,17 @@
 {
   "name": "atlas-finance-commercial",
   "private": true,
-  "version": "0.6.4",
+  "version": "0.6.5",
   "type": "module",
-  "engines": {
-    "node": ">=20.19.0"
-  },
+  "engines": { "node": ">=20.19.0" },
   "scripts": {
-    "predev": "node scripts/apply-emergency-tracker.mjs && node scripts/apply-insights-v4.mjs && node scripts/apply-insights-ui.mjs && node scripts/apply-onboarding-v5.mjs && node scripts/apply-insight-close-v6.mjs && node scripts/apply-copy-polish-v7.mjs && node scripts/apply-ui-polish-v7.mjs && node scripts/apply-local-calendar-v13.mjs && node scripts/apply-early-deployer-v14.mjs && node scripts/apply-emergency-companion-v15.mjs && node scripts/apply-interaction-guidance-v16.mjs",
+    "predev": "node scripts/apply-emergency-tracker.mjs && node scripts/apply-insights-v4.mjs && node scripts/apply-insights-ui.mjs && node scripts/apply-onboarding-v5.mjs && node scripts/apply-insight-close-v6.mjs && node scripts/apply-copy-polish-v7.mjs && node scripts/apply-ui-polish-v7.mjs && node scripts/apply-local-calendar-v13.mjs && node scripts/apply-early-deployer-v14.mjs && node scripts/apply-emergency-companion-v15.mjs && node scripts/apply-interaction-guidance-v16.mjs && node scripts/apply-unified-emergency-gold-v17.mjs",
     "dev": "vite",
-    "prebuild": "node scripts/apply-emergency-tracker.mjs && node scripts/apply-insights-v4.mjs && node scripts/apply-insights-ui.mjs && node scripts/apply-onboarding-v5.mjs && node scripts/apply-insight-close-v6.mjs && node scripts/apply-copy-polish-v7.mjs && node scripts/apply-ui-polish-v7.mjs && node scripts/apply-local-calendar-v13.mjs && node scripts/apply-early-deployer-v14.mjs && node scripts/apply-emergency-companion-v15.mjs && node scripts/apply-interaction-guidance-v16.mjs",
+    "prebuild": "node scripts/apply-emergency-tracker.mjs && node scripts/apply-insights-v4.mjs && node scripts/apply-insights-ui.mjs && node scripts/apply-onboarding-v5.mjs && node scripts/apply-insight-close-v6.mjs && node scripts/apply-copy-polish-v7.mjs && node scripts/apply-ui-polish-v7.mjs && node scripts/apply-local-calendar-v13.mjs && node scripts/apply-early-deployer-v14.mjs && node scripts/apply-emergency-companion-v15.mjs && node scripts/apply-interaction-guidance-v16.mjs && node scripts/apply-unified-emergency-gold-v17.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -b --pretty false"
   },
-  "dependencies": {
-    "@supabase/supabase-js": "^2.0.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.3"
-  },
-  "devDependencies": {
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "^5.9.2",
-    "vite": "^8.1.5"
-  }
+  "dependencies": { "@supabase/supabase-js": "^2.0.0", "react": "^19.2.8", "react-dom": "^19.2.3" },
+  "devDependencies": { "@types/react": "^19.0.0", "@types/react-dom": "^19.2.3", "@vitejs/plugin-react": "^5.0.0", "typescript": "^5.9.2", "vite": "^8.1.5" }
 }
