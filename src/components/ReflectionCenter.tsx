@@ -4,6 +4,7 @@ import ProgressPanel from "./ProgressPanel";
 import MonthlyReviewPanel from "./MonthlyReviewPanel";
 import PersonalInsightsPanel from "./PersonalInsightsPanel";
 import MonthClosePanel from "./MonthClosePanel";
+import AtlasIcon, { type AtlasIconName } from "./AtlasIcon";
 import type { EmotionalCheckIn, FinancialWin, FinanceState, MonthlyReflection } from "../types";
 import "./ReflectionCenter.css";
 import "./InsightClose.css";
@@ -19,6 +20,14 @@ type Props = {
   onOpenLearning: () => void;
 };
 
+const reflectionTabs: Array<{ value: Tab; label: string; icon: AtlasIconName }> = [
+  { value: "insights", label: "Insight", icon: "insight" },
+  { value: "emotion", label: "Perasaan", icon: "heart" },
+  { value: "wins", label: "Kemenangan", icon: "trophy" },
+  { value: "monthly", label: "Refleksi bulanan", icon: "calendar" },
+  { value: "close", label: "Tutup bulan", icon: "target" }
+];
+
 export function ReflectionSnapshot({ finance, onOpen }: { finance: FinanceState; onOpen: () => void }) {
   const latest = finance.emotionalCheckIns[0];
   const count = finance.financialWins.length;
@@ -26,6 +35,7 @@ export function ReflectionSnapshot({ finance, onOpen }: { finance: FinanceState;
   const isClosed = finance.monthlyReflections.some((item) => item.month === month && item.closedAt);
   return (
     <section className="card reflectionSnapshot">
+      <span className="reflectionSnapshotIcon" aria-hidden="true"><AtlasIcon name="reflect" size={23} /></span>
       <div>
         <span className="eyebrow">CERITA DI BALIK ANGKA</span>
         <h2>{latest ? `Terakhir kamu merasa ${emotionLabel(latest.emotion).toLowerCase()}.` : "Atlas mulai membaca cerita di balik angkamu."}</h2>
@@ -33,7 +43,7 @@ export function ReflectionSnapshot({ finance, onOpen }: { finance: FinanceState;
       </div>
       <div className="reflectionSnapshotAction">
         <span><strong>{count}</strong><small>kemenangan tersimpan</small></span>
-        <span><strong>{isClosed ? "✓" : "—"}</strong><small>{isClosed ? "bulan sudah ditutup" : "bulan belum ditutup"}</small></span>
+        <span><strong>{isClosed ? <AtlasIcon name="check" size={19} /> : "—"}</strong><small>{isClosed ? "bulan sudah ditutup" : "bulan belum ditutup"}</small></span>
         <button className="secondary" type="button" onClick={onOpen}>Buka insight dan refleksi</button>
       </div>
     </section>
@@ -57,12 +67,12 @@ export default function ReflectionCenter({
         <h2>Angka penting. Cerita dan keputusan setelahnya juga penting.</h2>
         <p>Atlas membaca pola dari data yang kamu catat, membantumu memahami perasaan, merayakan progres, dan menyiapkan bulan berikutnya.</p>
       </div>
-      <div className="reflectionTabs expandedTabs">
-        <button type="button" className={tab === "insights" ? "active" : ""} onClick={() => setTab("insights")}>Insight</button>
-        <button type="button" className={tab === "emotion" ? "active" : ""} onClick={() => setTab("emotion")}>Perasaan</button>
-        <button type="button" className={tab === "wins" ? "active" : ""} onClick={() => setTab("wins")}>Kemenangan</button>
-        <button type="button" className={tab === "monthly" ? "active" : ""} onClick={() => setTab("monthly")}>Refleksi bulanan</button>
-        <button type="button" className={tab === "close" ? "active" : ""} onClick={() => setTab("close")}>Tutup bulan</button>
+      <div className="reflectionTabs expandedTabs" aria-label="Bagian ruang refleksi">
+        {reflectionTabs.map((item) => (
+          <button key={item.value} type="button" className={tab === item.value ? "active" : ""} onClick={() => setTab(item.value)}>
+            <AtlasIcon name={item.icon} size={17} /><span>{item.label}</span>
+          </button>
+        ))}
       </div>
       {message && <button className="reflectionMessage" type="button" onClick={() => setMessage("")}>{message}</button>}
       {tab === "insights" && <PersonalInsightsPanel finance={finance} />}
