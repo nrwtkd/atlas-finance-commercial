@@ -39,6 +39,22 @@ export type GoalType =
   | "wedding"
   | "custom";
 
+export type LifeStage =
+  | "student"
+  | "starting"
+  | "working"
+  | "freelance_business"
+  | "family"
+  | "retired"
+  | "other";
+
+export type IncomePattern = "none" | "allowance" | "fixed" | "variable" | "mixed";
+export type ManagedFor = "self" | "partner" | "children" | "parents" | "business" | "other";
+export type DebtCondition = "none" | "manageable" | "heavy";
+export type EmergencyFundLevel = "none" | "under_one" | "one_to_three" | "over_three";
+export type FinancialPriority = "understand" | "budget" | "emergency" | "debt" | "goal" | "learn";
+export type BudgetStyle = "structured" | "balanced" | "flexible";
+
 export type MoneyEmotion =
   | "calm"
   | "safe"
@@ -82,6 +98,19 @@ export type FinancialWinCategory =
   | "debt"
   | "learning"
   | "other";
+
+export interface FinancialProfile {
+  lifeStage: LifeStage;
+  incomePattern: IncomePattern;
+  managedFor: ManagedFor[];
+  dependents: number;
+  debtCondition: DebtCondition;
+  emergencyFundLevel: EmergencyFundLevel;
+  priorities: FinancialPriority[];
+  budgetStyle: BudgetStyle;
+  completedAt: string;
+  updatedAt: string;
+}
 
 export interface BudgetAllocation {
   bucket: BudgetBucket;
@@ -164,8 +193,9 @@ export interface MonthlyReflection {
 }
 
 export interface FinanceState {
-  schemaVersion: 4;
+  schemaVersion: 5;
   profileName: string;
+  financialProfile?: FinancialProfile;
   householdMembers: string[];
   customCategories: Record<string, string[]>;
   budgetPlans: BudgetPlan[];
