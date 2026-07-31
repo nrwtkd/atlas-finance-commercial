@@ -1,0 +1,89 @@
+.reviewCompanion {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  margin: 15px 0 18px;
+  padding: 14px 18px 14px 12px;
+  border: 1px solid rgba(23, 48, 72, 0.1);
+  border-radius: 22px;
+  background: linear-gradient(115deg, #edf3ee 0%, #fffaf2 70%);
+  box-shadow: 0 14px 36px rgba(23, 48, 72, 0.07);
+}
+
+.reviewCompanion--cheer {
+  background: linear-gradient(115deg, #f7e6da 0%, #fffaf2 68%);
+}
+
+.reviewCompanion--think {
+  background: linear-gradient(115deg, #edf0f3 0%, #fffaf2 70%);
+}
+
+.reviewCompanionBubble {
+  position: relative;
+  padding: 13px 15px;
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.reviewCompanionBubble::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -8px;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%) rotate(45deg);
+  background: inherit;
+}
+
+.reviewCompanionBubble > * {
+  position: relative;
+}
+
+.reviewCompanionBubble strong {
+  display: block;
+  margin: 5px 0 6px;
+  color: #173048;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.reviewCompanionBubble p {
+  margin: 0;
+  color: #63707a;
+  font-size: 0.83rem;
+  line-height: 1.55;
+}
+
+@media (min-width: 900px) {
+  .reviewCompanion {
+    max-width: 880px;
+  }
+}
+
+@media (max-width: 620px) {
+  .reviewCompanion {
+    grid-template-columns: 66px minmax(0, 1fr);
+    gap: 8px;
+    padding: 12px 12px 12px 8px;
+    border-radius: 19px;
+  }
+
+  .reviewCompanion .atlasCompanion {
+    width: 66px;
+    height: 71px;
+  }
+
+  .reviewCompanionBubble {
+    padding: 11px 12px;
+  }
+
+  .reviewCompanionBubble strong {
+    font-size: 0.9rem;
+  }
+
+  .reviewCompanionBubble p {
+    font-size: 0.76rem;
+  }
+}
