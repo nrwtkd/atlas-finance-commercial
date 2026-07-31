@@ -16,4 +16,14 @@ if (!source.includes('onCommitFinance={(nextFinance) => persist(nextFinance)}'))
 }
 
 if (changed) await writeFile(appPath, source, "utf8");
+
+const closePath = new URL("../src/components/MonthClosePanel.tsx", import.meta.url);
+let closeSource = await readFile(closePath, "utf8");
+const invalidExpression = 'String(nextExistingPlan?.monthlyIncome ?? currentPlan?.monthlyIncome ?? income || "")';
+const validExpression = 'String((nextExistingPlan?.monthlyIncome ?? currentPlan?.monthlyIncome ?? income) || "")';
+if (closeSource.includes(invalidExpression)) {
+  closeSource = closeSource.replace(invalidExpression, validExpression);
+  await writeFile(closePath, closeSource, "utf8");
+}
+
 console.log("Atlas personal insights and month close ready");
