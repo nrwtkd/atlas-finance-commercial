@@ -18,10 +18,12 @@ export type BudgetBucket =
   | "Berbagi dan ibadah";
 
 export type BudgetScenario =
+  | "belajar_mengelola"
   | "seimbang"
   | "bangun_dana_darurat"
   | "prioritas_utang"
-  | "penghasilan_tidak_tetap";
+  | "penghasilan_tidak_tetap"
+  | "jaga_stabilitas";
 
 export interface BudgetAllocation {
   bucket: BudgetBucket;
