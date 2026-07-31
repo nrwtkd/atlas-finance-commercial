@@ -7,7 +7,9 @@
     "node": ">=20.19.0"
   },
   "scripts": {
+    "predev": "node scripts/apply-emergency-tracker.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/apply-emergency-tracker.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -b --pretty false"
