@@ -1,3 +1,5 @@
+import AtlasIcon from "./AtlasIcon";
+
 type WelcomeJourneyProps = {
   name: string;
   transactionCount: number;
@@ -9,7 +11,7 @@ export default function WelcomeJourney({ name, transactionCount, onRecord }: Wel
 
   return (
     <section className="welcomeJourney" aria-labelledby="welcome-title">
-      <div className="welcomeBloom" aria-hidden="true">✦</div>
+      <div className="welcomeBloom" aria-hidden="true"><AtlasIcon name="sparkles" size={23} /></div>
 
       <div className="welcomeCopy">
         <span className="welcomeKicker">SELAMAT DATANG DI ATLAS</span>
@@ -24,7 +26,7 @@ export default function WelcomeJourney({ name, transactionCount, onRecord }: Wel
         </p>
 
         <div className="welcomeTrust">
-          <span aria-hidden="true">◇</span>
+          <span aria-hidden="true"><AtlasIcon name="shield" size={20} /></span>
           <div>
             <strong>Ruang ini milikmu.</strong>
             <small>Data finansial tetap tersimpan di perangkat ini.</small>
@@ -32,18 +34,18 @@ export default function WelcomeJourney({ name, transactionCount, onRecord }: Wel
         </div>
 
         <button className="welcomeAction" type="button" onClick={onRecord}>
-          Catat langkah pertamaku <span aria-hidden="true">→</span>
+          <span>Catat langkah pertamaku</span><AtlasIcon name="arrowRight" size={18} />
         </button>
       </div>
 
       <details className="quickGuide">
         <summary>
-          <span className="quickGuideIcon" aria-hidden="true">☼</span>
+          <span className="quickGuideIcon" aria-hidden="true"><AtlasIcon name="book" size={21} /></span>
           <span className="quickGuideTitle">
             <strong>Panduan singkat Atlas</strong>
             <small>Buka saat perlu—tidak harus dibaca sekaligus.</small>
           </span>
-          <span className="quickGuideChevron" aria-hidden="true">⌄</span>
+          <span className="quickGuideChevron" aria-hidden="true"><AtlasIcon name="chevronDown" size={18} /></span>
         </summary>
         <ol>
           <li>
@@ -68,7 +70,7 @@ export default function WelcomeJourney({ name, transactionCount, onRecord }: Wel
           </li>
           <li>
             <strong>Jaga PIN lokalmu.</strong>
-            <span>PIN tidak disimpan oleh Atlas dan diperlukan untuk membuka salinan data terenkripsi.</span>
+            <span>PIN adalah kunci untuk membuka data dan salinan cadangan yang tersimpan aman.</span>
           </li>
         </ol>
       </details>
