@@ -20,50 +20,49 @@ export default function AtlasCompanion({
   return (
     <span className={`atlasCompanion atlasCompanion--${size} atlasCompanion--${mood}`} role="img" aria-label={label}>
       <svg viewBox="0 0 160 170" aria-hidden="true">
-        <ellipse className="companionShadow" cx="80" cy="155" rx="43" ry="9" />
+        <ellipse className="companionShadow" cx="80" cy="154" rx="42" ry="8" />
 
         {cheering && (
           <g className="companionSparkles">
-            <path d="M21 35v13M14.5 41.5h13" />
-            <path d="M136 24v16M128 32h16" />
-            <path d="M142 62v10M137 67h10" />
+            <path d="M23 31v14M16 38h14" />
+            <path d="M134 24v16M126 32h16" />
+            <path d="M140 61v10M135 66h10" />
           </g>
         )}
 
         <g className="companionArms">
-          <path d={cheering ? "M48 89C31 80 27 64 30 51" : thinking ? "M48 92C35 88 34 75 43 68" : "M48 93C35 99 31 111 36 120"} />
-          <path d={cheering ? "M112 89C129 80 133 64 130 51" : guiding ? "M112 92C128 88 133 75 130 63" : "M112 93C125 99 129 111 124 120"} />
-          <circle cx={cheering ? 30 : thinking ? 43 : 36} cy={cheering ? 50 : thinking ? 68 : 121} r="5" />
-          <circle cx={cheering ? 130 : guiding ? 130 : 124} cy={cheering ? 50 : guiding ? 63 : 121} r="5" />
+          <path d={cheering ? "M44 88C27 78 24 61 29 48" : thinking ? "M44 91C31 88 31 75 41 68" : "M44 91C30 98 28 111 34 122"} />
+          <path d={cheering ? "M116 88C133 78 136 61 131 48" : guiding ? "M116 91C132 87 137 74 133 61" : "M116 91C130 98 132 111 126 122"} />
+          <circle cx={cheering ? 29 : thinking ? 41 : 34} cy={cheering ? 47 : thinking ? 68 : 123} r="5" />
+          <circle cx={cheering ? 131 : guiding ? 133 : 126} cy={cheering ? 47 : guiding ? 61 : 123} r="5" />
         </g>
 
         {guiding && (
           <g className="companionFlag">
-            <path d="M132 63V27" />
-            <path d="M132 28h20l-6 9 6 9h-20z" />
+            <path d="M135 61V24" />
+            <path d="M135 25h18l-5 9 5 9h-18z" />
           </g>
         )}
 
-        <path className="companionBody" d="M80 24c31 0 51 23 51 56v30c0 28-20 45-51 45s-51-17-51-45V80c0-33 20-56 51-56z" />
-        <path className="companionRim" d="M80 35c24 0 39 18 39 45v25c0 23-15 37-39 37s-39-14-39-37V80c0-27 15-45 39-45z" />
-        <path className="companionFace" d="M80 43c20 0 32 14 32 37v21c0 20-12 31-32 31s-32-11-32-31V80c0-23 12-37 32-37z" />
-
-        <g className="companionCompass">
-          <circle cx="80" cy="70" r="15" />
-          <path d="m80 57 5 13-5 13-5-13z" />
-          <circle cx="80" cy="70" r="2.7" />
-        </g>
+        <path className="companionHandle" d="M61 42c0-15 38-15 38 0" />
+        <rect className="companionBody" x="40" y="39" width="80" height="105" rx="29" />
+        <path className="companionTopPanel" d="M53 51c14-10 40-10 54 0v28H53z" />
+        <rect className="companionFace" x="51" y="58" width="58" height="52" rx="22" />
 
         <g className="companionEyes">
-          <path d={thinking ? "M59 95q5-4 10 0" : "M59 94q5 5 10 0"} />
-          <path d="M91 94q5 5 10 0" />
+          <circle cx="68" cy="82" r="3.6" />
+          <circle cx="92" cy="82" r="3.6" />
+          {thinking && <path d="M62 73q6-4 12 0M86 73q6 1 12-2" />}
         </g>
-        <path className="companionSmile" d={cheering ? "M68 108q12 15 24 0" : thinking ? "M70 111q10-5 20 0" : "M69 108q11 10 22 0"} />
+        <path className="companionSmile" d={cheering ? "M66 92q14 16 28 0" : thinking ? "M69 96q11-5 22 0" : "M68 92q12 10 24 0"} />
 
-        <path className="companionScarf" d="M46 120c20 12 48 12 68 0l-7 19c-17 9-37 9-54 0z" />
-        <path className="companionScarfTail" d="M105 132c14 4 20 12 22 23-9-5-18-5-27-2z" />
+        <rect className="companionPocket" x="57" y="114" width="46" height="24" rx="10" />
+        <path className="companionStar" d="m80 118 3.6 7.2 8 1.2-5.8 5.6 1.4 7.9-7.2-3.8-7.2 3.8 1.4-7.9-5.8-5.6 8-1.2z" />
+        <path className="companionScarf" d="M45 104c21 12 49 12 70 0l-7 16c-18 9-38 9-56 0z" />
+        <path className="companionScarfTail" d="M105 113c13 5 19 13 20 24-8-5-17-6-25-3z" />
 
-        {thinking && <path className="companionQuestion" d="M125 43c0-9 15-10 15 0 0 7-8 6-8 13M132 65h.1" />}
+        <path className="companionFoot" d="M59 143v8M101 143v8" />
+        {thinking && <path className="companionQuestion" d="M126 43c0-9 15-10 15 0 0 7-8 6-8 13M133 65h.1" />}
       </svg>
     </span>
   );
