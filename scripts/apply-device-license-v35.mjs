@@ -44,9 +44,9 @@ await edit("src/App.tsx", (input) => {
     'if (!authReady || !vaultReady || (isDeviceLimitEnabled && entitlement?.status === "active" && !deviceReady)) return <Centered'
   );
 
-  if (!source.includes('<DeviceAccessGate\n        access={deviceAccess}')) {
+  if (!source.includes("<DeviceAccessGate\n        access={deviceAccess ??")) {
     const anchor = '  if (!finance) {';
-    const gate = `  if (isDeviceLimitEnabled && entitlement?.status === "active" && deviceReady && deviceAccess?.status !== "active") {\n    return (\n      <DeviceAccessGate\n        access={deviceAccess}\n        onRetry={async () => {\n          setDeviceReady(false);\n          try {\n            setDeviceAccess(await activateThisDevice());\n          } finally {\n            setDeviceReady(true);\n          }\n        }}\n        onSignOut={() => void supabase?.auth.signOut()}\n      />\n    );\n  }\n\n${anchor}`;
+    const gate = `  if (isDeviceLimitEnabled && entitlement?.status === "active" && deviceReady && deviceAccess?.status !== "active") {\n    return (\n      <DeviceAccessGate\n        access={deviceAccess ?? {\n          status: "unavailable",\n          installationId: "",\n          deviceName: "Perangkat ini",\n          activeCount: 0,\n          maxDevices: 2,\n          message: "Pemeriksaan perangkat belum memberikan hasil."\n        }}\n        onRetry={async () => {\n          setDeviceReady(false);\n          try {\n            setDeviceAccess(await activateThisDevice());\n          } finally {\n            setDeviceReady(true);\n          }\n        }}\n        onSignOut={() => void supabase?.auth.signOut()}\n      />\n    );\n  }\n\n${anchor}`;
     source = requiredReplace(source, anchor, gate, "device gate mount");
   }
 
