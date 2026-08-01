@@ -1,5 +1,5 @@
-import type { BudgetPlan, FinanceTransaction } from "../types";
-import AtlasIcon from "./AtlasIcon";
+import type { BudgetPlan, BudgetBucket, FinanceTransaction } from "../types";
+import AtlasCompanion from "./AtlasCompanion";
 import "./FundingAwarenessCard.css";
 
 const rupiah = new Intl.NumberFormat("id-ID", {
@@ -7,6 +7,13 @@ const rupiah = new Intl.NumberFormat("id-ID", {
   currency: "IDR",
   maximumFractionDigits: 0
 });
+
+function budgetLimit(plan: BudgetPlan, bucket: BudgetBucket) {
+  const allocation = plan.allocations.find((item) => item.bucket === bucket);
+  if (!allocation) return 0;
+  if (allocation.basis === "amount" && typeof allocation.amount === "number") return Math.max(0, allocation.amount);
+  return Math.max(0, plan.monthlyIncome * allocation.percent / 100);
+}
 
 export default function FundingAwarenessCard({
   plan,
@@ -23,33 +30,47 @@ export default function FundingAwarenessCard({
 
   const ratio = Math.min(100, Math.round(actualIncome / plan.monthlyIncome * 100));
   const remainingIncome = Math.max(0, plan.monthlyIncome - actualIncome);
-  const plannedBuckets = new Map(plan.allocations.map((item) => [item.bucket, item.percent]));
-  const unplannedBuckets = Array.from(new Set(
-    transactions
-      .filter((item) => (item.type === "expense" || (item.type === "allocation" && item.allocationAction !== "withdrawal"))
-        && item.budgetBucket
-        && (plannedBuckets.get(item.budgetBucket) ?? 0) === 0)
-      .map((item) => item.budgetBucket!)
-  ));
+  const movementByBucket = new Map<BudgetBucket, number>();
 
-  if (ratio >= 100 && unplannedBuckets.length === 0) return null;
+  for (const item of transactions) {
+    if (!item.budgetBucket) continue;
+    let movement = 0;
+    if (item.type === "expense") movement = item.amount;
+    if (item.type === "allocation") movement = item.allocationAction === "withdrawal" ? -item.amount : item.amount;
+    movementByBucket.set(item.budgetBucket, (movementByBucket.get(item.budgetBucket) ?? 0) + movement);
+  }
+
+  const unplannedMovements = Array.from(movementByBucket.entries())
+    .map(([bucket, amount]) => ({ bucket, amount: Math.max(0, amount) }))
+    .filter(({ bucket, amount }) => amount > 0 && budgetLimit(plan, bucket) <= 1)
+    .sort((a, b) => b.amount - a.amount);
+
+  if (ratio >= 100 && unplannedMovements.length === 0) return null;
 
   const lowFunding = ratio < 50;
   const moderateFunding = ratio >= 50 && ratio < 100;
+  const hasUnplannedMovement = unplannedMovements.length > 0;
 
   return (
-    <section className={`fundingAwareness ${lowFunding ? "fundingAwareness--low" : ""}`} aria-labelledby="funding-awareness-title">
-      <span className="fundingAwarenessIcon" aria-hidden="true">
-        <AtlasIcon name={unplannedBuckets.length ? "insight" : "wallet"} size={21} />
-      </span>
+    <section className={`fundingAwareness ${lowFunding ? "fundingAwareness--low" : ""} ${hasUnplannedMovement ? "fundingAwareness--warning" : ""}`} aria-labelledby="funding-awareness-title">
+      <div className="fundingAwarenessCompanion">
+        <AtlasCompanion
+          mood={hasUnplannedMovement ? "warn" : "guide"}
+          size="medium"
+          label={hasUnplannedMovement ? "Tala mengingatkan ada uang keluar tanpa anggaran" : "Tala membantu menjaga langkah bulan ini"}
+        />
+      </div>
+
       <div className="fundingAwarenessBody">
-        <span className="eyebrow">JAGA LANGKAH BULAN INI</span>
+        <span className="eyebrow">{hasUnplannedMovement ? "TALA MENGINGATKAN" : "JAGA LANGKAH BULAN INI"}</span>
         <h2 id="funding-awareness-title">
-          {lowFunding
-            ? "Rencanamu belum sepenuhnya didanai."
-            : moderateFunding
-              ? "Pemasukan bulan ini masih bertahap."
-              : "Ada pergerakan uang di luar pembagian awal."}
+          {hasUnplannedMovement
+            ? "Ada uang yang sudah bergerak sebelum posnya mendapat anggaran."
+            : lowFunding
+              ? "Rencanamu belum sepenuhnya didanai."
+              : moderateFunding
+                ? "Pemasukan bulan ini masih bertahap."
+                : "Mari jaga pembagian uang yang sudah tersedia."}
         </h2>
 
         {ratio < 100 && (
@@ -65,21 +86,24 @@ export default function FundingAwarenessCard({
             </div>
             <p className="fundingAdvice">
               {lowFunding
-                ? "Utamakan kebutuhan wajib dan kewajiban yang jatuh tempo. Tunda dulu pengeluaran fleksibel serta alokasi tambahan yang belum mendesak."
+                ? "Utamakan kebutuhan wajib dan kewajiban yang jatuh tempo. Tunda dulu pengeluaran fleksibel serta tambahan yang belum mendesak."
                 : "Kamu boleh melanjutkan rencana, tetapi gunakan uang yang sudah benar-benar tersedia—bukan seluruh angka proyeksi."}
             </p>
           </>
         )}
 
-        {unplannedBuckets.length > 0 && (
-          <div className="unplannedMovement">
-            <strong>Belum mendapat porsi dalam anggaran:</strong>
-            <span>{unplannedBuckets.join(", ")}</span>
-            <p>Pergerakannya tetap dicatat, tetapi rencana bulan ini perlu disesuaikan supaya laporan tidak menunjukkan target Rp0.</p>
+        {hasUnplannedMovement && (
+          <div className="unplannedMovement" aria-label="Pergerakan tanpa anggaran">
+            {unplannedMovements.map(({ bucket, amount }) => (
+              <article key={bucket}>
+                <strong>Hei, {rupiah.format(amount)} sudah keluar untuk {bucket}.</strong>
+                <p>Pos ini belum punya anggaran. Catatannya tetap aman, tetapi pembagian bulan ini perlu diperbarui agar keputusan berikutnya tidak memakai ruang yang sebenarnya belum tersedia.</p>
+              </article>
+            ))}
           </div>
         )}
       </div>
-      <button className="secondary" type="button" onClick={onOpenBudget}>Tinjau anggaran</button>
+      <button className="secondary" type="button" onClick={onOpenBudget}>Sesuaikan anggaran</button>
     </section>
   );
 }
