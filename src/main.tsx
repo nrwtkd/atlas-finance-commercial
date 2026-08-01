@@ -19,6 +19,7 @@ import "./desktop-scale-v11.css";
 import "./interaction-v16.css";
 import "./goal-allocation-clarity-v19.css";
 import "./transaction-edit-v20.css";
+import "./responsive-budget-v24.css";
 
 if ("serviceWorker" in navigator && import.meta.env.PROD) {
   window.addEventListener("load", () => {
