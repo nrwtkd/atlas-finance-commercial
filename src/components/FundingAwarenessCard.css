@@ -1,10 +1,10 @@
 .fundingAwareness {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: 92px minmax(0, 1fr) auto;
   align-items: start;
-  gap: 16px;
+  gap: 18px;
   margin: 18px 0;
-  padding: 20px;
+  padding: 22px;
   border: 1px solid rgba(31, 49, 82, 0.12);
   border-radius: 24px;
   background:
@@ -13,18 +13,18 @@
   box-shadow: 0 18px 46px rgba(31, 49, 82, 0.08);
 }
 
-.fundingAwareness--low {
-  border-color: rgba(191, 118, 92, 0.24);
+.fundingAwareness--low,
+.fundingAwareness--warning {
+  border-color: rgba(191, 118, 92, 0.28);
 }
 
-.fundingAwarenessIcon {
+.fundingAwarenessCompanion {
   display: grid;
-  width: 46px;
-  height: 46px;
-  place-items: center;
-  border-radius: 15px;
-  background: rgba(242, 209, 191, 0.78);
-  color: #1f3152;
+  min-height: 92px;
+  place-items: start center;
+  padding: 7px 4px 0;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(242, 209, 191, 0.48), rgba(230, 238, 225, 0.5));
 }
 
 .fundingAwarenessBody {
@@ -35,7 +35,7 @@
   margin: 5px 0 8px;
   color: #1f3152;
   font-size: clamp(1.15rem, 2vw, 1.55rem);
-  line-height: 1.18;
+  line-height: 1.22;
 }
 
 .fundingAwareness p {
@@ -82,39 +82,42 @@
 }
 
 .fundingAdvice {
-  padding: 11px 12px;
-  border-radius: 13px;
-  background: rgba(230, 238, 225, 0.7);
+  padding: 12px 13px;
+  border-radius: 14px;
+  background: rgba(230, 238, 225, 0.72);
   color: #4f6550 !important;
   font-weight: 700;
 }
 
 .unplannedMovement {
-  margin-top: 13px;
-  padding: 12px 13px;
-  border: 1px solid rgba(191, 118, 92, 0.18);
-  border-radius: 14px;
-  background: rgba(242, 209, 191, 0.19);
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.unplannedMovement article {
+  padding: 13px 14px;
+  border: 1px solid rgba(191, 118, 92, 0.24);
+  border-radius: 15px;
+  background: rgba(242, 209, 191, 0.22);
 }
 
 .unplannedMovement strong,
-.unplannedMovement span {
+.unplannedMovement p {
   display: block;
 }
 
 .unplannedMovement strong {
-  color: #1f3152;
-  font-size: 0.78rem;
-}
-
-.unplannedMovement span {
-  margin: 4px 0;
-  color: #a55e48;
-  font-weight: 850;
+  color: #9a4f3c;
+  font-size: 0.88rem;
+  line-height: 1.45;
 }
 
 .unplannedMovement p {
+  margin-top: 5px;
+  color: #687178;
   font-size: 0.78rem;
+  line-height: 1.52;
 }
 
 .recordBudgetWarning {
@@ -147,13 +150,35 @@
 
 @media (max-width: 700px) {
   .fundingAwareness {
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: 72px minmax(0, 1fr);
     gap: 12px;
     padding: 17px;
+  }
+
+  .fundingAwarenessCompanion {
+    min-height: 76px;
+    padding-top: 3px;
+    border-radius: 17px;
+  }
+
+  .fundingAwareness h2 {
+    font-size: 1.08rem;
   }
 
   .fundingAwareness > button {
     grid-column: 1 / -1;
     width: 100%;
+  }
+}
+
+@media (max-width: 430px) {
+  .fundingAwareness {
+    grid-template-columns: 1fr;
+  }
+
+  .fundingAwarenessCompanion {
+    width: 76px;
+    min-height: 72px;
+    justify-self: start;
   }
 }
