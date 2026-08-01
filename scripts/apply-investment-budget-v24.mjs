@@ -212,7 +212,7 @@ await edit("src/App.tsx", (input) => {
 
       <div className={overBudget ? "budgetResponsiveTotal over" : completeBudget ? "budgetResponsiveTotal valid" : "budgetResponsiveTotal remaining"}>
         <div><span>Total rencana</span><strong>{rupiah.format(totalAmount)} · {totalPercent.toFixed(2).replace(".00", "")}%</strong></div>
-        <p>{overBudget ? `Melebihi pemasukan sebesar ${rupiah.format(Math.abs(difference))}. Kurangi salah satu pos sebelum menyimpan.` : completeBudget ? "Seluruh pemasukan sudah diberi tugas." : `Masih ada ${rupiah.format(Math.max(0, difference))} yang belum diberi tugas.`}</p>
+        <p>{overBudget ? "Melebihi pemasukan sebesar " + rupiah.format(Math.abs(difference)) + ". Kurangi salah satu pos sebelum menyimpan." : completeBudget ? "Seluruh pemasukan sudah diberi tugas." : "Masih ada " + rupiah.format(Math.max(0, difference)) + " yang belum diberi tugas."}</p>
       </div>
       <button className="primary" disabled={busy || !completeBudget || overBudget}>{busy ? "Menyimpan…" : overBudget ? "Kurangi pembagian dahulu" : "Simpan rencana bulan ini"}</button>
     </section>
