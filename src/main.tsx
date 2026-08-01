@@ -20,6 +20,7 @@ import "./interaction-v16.css";
 import "./goal-allocation-clarity-v19.css";
 import "./transaction-edit-v20.css";
 import "./responsive-budget-v24.css";
+import "./budget-reconciliation-v26.css";
 
 if ("serviceWorker" in navigator && import.meta.env.PROD) {
   window.addEventListener("load", () => {
