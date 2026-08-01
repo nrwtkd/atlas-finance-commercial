@@ -21,6 +21,7 @@ import "./goal-allocation-clarity-v19.css";
 import "./transaction-edit-v20.css";
 import "./responsive-budget-v24.css";
 import "./budget-reconciliation-v26.css";
+import "./budget-exact-v28.css";
 
 if ("serviceWorker" in navigator && import.meta.env.PROD) {
   window.addEventListener("load", () => {
