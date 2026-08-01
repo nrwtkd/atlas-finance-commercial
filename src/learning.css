@@ -1,0 +1,303 @@
+/* Five-part navigation */
+nav { grid-template-columns: repeat(5, 1fr); }
+nav small { font-size: 8.5px; }
+
+/* Adaptive transaction form */
+.recordIntro {
+  max-width: 600px;
+  margin: -3px 2px 14px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.awarenessGuide {
+  display: grid;
+  gap: 4px;
+  padding: 14px 15px;
+  border: 1px solid rgba(153,170,145,.4);
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(232,238,227,.82), rgba(255,250,243,.88));
+}
+
+.awarenessGuide strong {
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+}
+
+.awarenessGuide span {
+  color: #5e675a;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.awarenessGuide small {
+  color: var(--muted);
+  font-size: 10px;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+/* Learning hub */
+.learningHub {
+  display: grid;
+  gap: 20px;
+  padding-bottom: 12px;
+}
+
+.learningHero {
+  position: relative;
+  padding: clamp(25px, 5vw, 38px);
+  overflow: hidden;
+  border: 1px solid rgba(213,143,112,.3);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 96% 4%, rgba(213,143,112,.19), transparent 19rem),
+    radial-gradient(circle at 8% 100%, rgba(153,170,145,.16), transparent 16rem),
+    var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.learningHero h2 {
+  max-width: 590px;
+  margin: 8px 0 13px;
+  color: var(--navy);
+  font-size: clamp(30px, 5vw, 45px);
+  line-height: 1.02;
+}
+
+.learningHero > p {
+  max-width: 620px;
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.learningPromise {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 15px;
+  background: var(--sage-soft);
+}
+
+.learningPromise > span {
+  color: var(--terracotta-deep);
+  font-size: 18px;
+}
+
+.learningPromise p {
+  margin: 0;
+  color: #596852;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.learningHeading {
+  display: grid;
+  grid-template-columns: 1fr minmax(220px, .8fr);
+  align-items: end;
+  gap: 24px;
+  margin-top: 4px;
+}
+
+.learningHeading h3 {
+  margin: 6px 0 0;
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+}
+
+.learningHeading > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.learningModules {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+}
+
+.learningModule {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(255,250,243,.96);
+  box-shadow: var(--shadow-soft);
+}
+
+.learningModule summary {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 12px;
+  padding: 17px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.learningModule summary::-webkit-details-marker { display: none; }
+
+.learningModule summary::after {
+  content: "+";
+  position: absolute;
+  right: 16px;
+  color: var(--terracotta-deep);
+  font-size: 18px;
+}
+
+.learningModule[open] summary::after { content: "−"; }
+.learningModule summary { position: relative; padding-right: 38px; }
+
+.moduleNumber {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 13px;
+  background: var(--soft);
+  color: var(--navy);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.learningModule summary > span:last-of-type {
+  display: grid;
+  gap: 5px;
+}
+
+.learningModule strong {
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+}
+
+.learningModule small {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.learningModule ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0 18px 18px 47px;
+  color: #625f5c;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.learningModule li::marker { color: var(--terracotta-deep); }
+
+.emergencyCalculator {
+  display: grid;
+  gap: 18px;
+  margin-top: 4px;
+  padding: 22px;
+}
+
+.calculatorIntro {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.calculatorIcon {
+  display: grid;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--sage-soft);
+  color: #64785d;
+  font-size: 20px;
+}
+
+.calculatorIntro h3 {
+  margin: 5px 0 7px;
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+}
+
+.calculatorIntro p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.calculatorFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.calculatorResult {
+  display: grid;
+  gap: 5px;
+  padding: 17px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, var(--navy), var(--navy-soft));
+  color: white;
+}
+
+.calculatorResult > span {
+  color: rgba(255,255,255,.7);
+  font-size: 10px;
+}
+
+.calculatorResult strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 29px;
+}
+
+.calculatorResult small {
+  max-width: 600px;
+  color: rgba(255,255,255,.68);
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.learningNote {
+  margin: 0;
+  padding: 0 8px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .learningHeading,
+  .learningModules,
+  .calculatorFields {
+    grid-template-columns: 1fr;
+  }
+
+  .learningHero {
+    padding: 24px 19px;
+    border-radius: 24px;
+  }
+
+  .learningPromise {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  nav small { font-size: 7.5px; }
+  nav span { font-size: 18px; }
+
+  .adaptiveFields,
+  .calculatorFields {
+    grid-template-columns: 1fr;
+  }
+}

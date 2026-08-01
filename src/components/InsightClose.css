@@ -1,0 +1,385 @@
+.expandedTabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+
+.expandedTabs button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.personalInsights,
+.monthClose {
+  display: grid;
+  gap: 18px;
+}
+
+.insightHero,
+.closeHero {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 24px;
+  border: 1px solid rgba(31, 49, 82, 0.12);
+  border-radius: 24px;
+  background: linear-gradient(135deg, #fffaf4 0%, #f3e7dc 100%);
+}
+
+.insightHero h3,
+.closeHero h3 {
+  margin: 6px 0 8px;
+  color: #1f3152;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+}
+
+.insightHero p,
+.closeHero p,
+.insightCard p,
+.nextStepCard p,
+.automaticWinsCard p,
+.planRealityCard p,
+.closeSignalGrid p,
+.remainingDirectionCard p,
+.nextPlanCard p {
+  margin: 0;
+  color: #6d675f;
+  line-height: 1.65;
+}
+
+.emotionBadge,
+.closeHero > span {
+  flex: 0 0 auto;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(126, 147, 117, 0.16);
+  color: #52694d;
+  font-weight: 700;
+  font-size: 0.84rem;
+}
+
+.insightCardGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.insightCard {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(31, 49, 82, 0.1);
+  background: #fffdf9;
+}
+
+.insightCard > span {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: #eef3e9;
+  color: #5d7657;
+  font-weight: 800;
+}
+
+.insightCard.watch > span {
+  background: #f8dfd0;
+  color: #a95f45;
+}
+
+.insightCard.grow > span {
+  background: #e4eddf;
+  color: #55744d;
+}
+
+.insightCard h4 {
+  margin: 0 0 7px;
+  color: #1f3152;
+  font-size: 1.05rem;
+}
+
+.nextStepCard,
+.automaticWinsCard,
+.planRealityCard,
+.closeReflectionCard,
+.remainingDirectionCard,
+.nextPlanCard {
+  padding: 24px;
+}
+
+.nextStepCard {
+  background: #1f3152;
+  color: #fffaf4;
+}
+
+.nextStepCard .eyebrow,
+.nextStepCard h3,
+.nextStepCard p {
+  color: inherit;
+}
+
+.nextStepCard h3,
+.automaticWinsCard h3,
+.planRealityCard h3,
+.closeReflectionCard h3,
+.remainingDirectionCard h3,
+.nextPlanCard h3 {
+  margin: 7px 0 9px;
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+}
+
+.automaticWinsCard {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.automaticWinsCard ul,
+.nextPlanReasons {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.automaticWinsCard li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 9px;
+  align-items: start;
+  color: #33425d;
+}
+
+.automaticWinsCard li span {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e7efe2;
+  color: #54734d;
+  font-weight: 800;
+}
+
+.closeSummaryGrid,
+.closeSignalGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.closeSummaryGrid article,
+.closeSignalGrid article {
+  padding: 18px;
+  border-radius: 19px;
+  border: 1px solid rgba(31, 49, 82, 0.1);
+  background: #fffdf9;
+}
+
+.closeSummaryGrid article.available {
+  background: #1f3152;
+  color: #fffaf4;
+}
+
+.closeSummaryGrid span,
+.closeSignalGrid .eyebrow {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.78rem;
+}
+
+.closeSummaryGrid strong,
+.closeSignalGrid strong {
+  display: block;
+  font-size: 1.2rem;
+}
+
+.closeSignalGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.planRealityRows {
+  display: grid;
+  gap: 15px;
+  margin-top: 18px;
+}
+
+.planRealityRows article {
+  display: grid;
+  gap: 7px;
+}
+
+.planRealityRows article > div:first-child,
+.nextPlanAllocationGrid p {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: baseline;
+}
+
+.planRealityRows small {
+  color: #746d64;
+}
+
+.closeReflectionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 18px;
+}
+
+.closeReflectionGrid label,
+.remainingDirectionCard label,
+.nextPlanCard label {
+  display: grid;
+  gap: 8px;
+  color: #1f3152;
+  font-weight: 700;
+}
+
+.closeReflectionGrid textarea {
+  min-height: 112px;
+  resize: vertical;
+}
+
+.closeActionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+  margin: 16px 0;
+}
+
+.closeAction {
+  display: grid;
+  gap: 5px;
+  padding: 16px;
+  text-align: left;
+  border: 1px solid #ded4c8;
+  border-radius: 17px;
+  background: #fffdf9;
+  color: #1f3152;
+}
+
+.closeAction span {
+  color: #746d64;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.closeAction.active {
+  border-color: #bf765c;
+  background: #f9e4d8;
+  box-shadow: 0 0 0 2px rgba(191, 118, 92, 0.12);
+}
+
+.closeAction:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.togglePlan {
+  grid-template-columns: auto minmax(0, 1fr) !important;
+  align-items: center;
+  margin: 18px 0;
+}
+
+.togglePlan input {
+  width: 18px;
+  height: 18px;
+}
+
+.nextPlanAllocationGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  margin: 16px 0;
+}
+
+.nextPlanAllocationGrid p {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #f6efe7;
+  color: #4f4a45;
+}
+
+.nextPlanAllocationGrid strong {
+  color: #1f3152;
+}
+
+.nextPlanReasons li {
+  position: relative;
+  padding-left: 18px;
+  color: #655f58;
+  line-height: 1.55;
+}
+
+.nextPlanReasons li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: #bf765c;
+}
+
+.closeSubmit {
+  width: 100%;
+  min-height: 54px;
+  font-size: 1rem;
+}
+
+.closeFine {
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .insightHero,
+  .closeHero,
+  .automaticWinsCard {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+
+  .insightCardGrid,
+  .closeReflectionGrid,
+  .closeActionGrid,
+  .nextPlanAllocationGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .closeSummaryGrid,
+  .closeSignalGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .emotionBadge,
+  .closeHero > span {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .closeSummaryGrid,
+  .closeSignalGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .insightHero,
+  .closeHero,
+  .nextStepCard,
+  .automaticWinsCard,
+  .planRealityCard,
+  .closeReflectionCard,
+  .remainingDirectionCard,
+  .nextPlanCard {
+    padding: 18px;
+  }
+}

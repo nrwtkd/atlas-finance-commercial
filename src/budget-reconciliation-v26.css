@@ -1,0 +1,23 @@
+.budgetSnapshotNumbersFour {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.budgetMiniGrid article.isOver {
+  border-color: rgba(164, 67, 56, 0.55);
+  background: rgba(164, 67, 56, 0.07);
+}
+
+.budgetMiniGrid article.isOver > div:first-child strong,
+.budgetMiniGrid article.isOver small {
+  color: #9f463b;
+}
+
+.budgetMiniGrid article.isOver .progressTrack i {
+  background: #a44338;
+}
+
+@media (max-width: 720px) {
+  .budgetSnapshotNumbersFour {
+    grid-template-columns: 1fr;
+  }
+}

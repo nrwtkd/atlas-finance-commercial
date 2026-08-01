@@ -1,0 +1,98 @@
+.balanceHeading {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.balanceHeading small {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 250, 244, 0.78);
+  font-size: 0.75rem;
+  font-weight: 750;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.quickGoldAction {
+  width: 100%;
+  border-style: dashed;
+  background: rgba(230, 238, 225, 0.58);
+  color: #4f6550;
+}
+
+.allocationExplanation {
+  padding: 14px 15px;
+  border: 1px solid rgba(31, 49, 82, 0.11);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.allocationExplanation strong,
+.allocationExplanation p {
+  display: block;
+}
+
+.allocationExplanation strong {
+  color: #1f3152;
+}
+
+.allocationExplanation p {
+  margin: 5px 0 0;
+  color: #63707a;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.transactionEditActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 7px;
+  margin-top: 9px;
+}
+
+.transactionEditActions button {
+  min-height: 34px;
+  padding: 6px 10px;
+  border: 1px solid rgba(31, 49, 82, 0.13);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #40506c;
+  font-size: 0.73rem;
+  font-weight: 800;
+}
+
+.transactionEditActions button:last-child {
+  color: #a55e48;
+}
+
+@media (max-width: 700px) {
+  .balanceHeading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .balanceHeading > span {
+    max-width: 54%;
+  }
+
+  .balanceHeading small {
+    min-height: 30px;
+    padding: 6px 9px;
+    font-size: 0.69rem;
+  }
+
+  .atlasList article {
+    align-items: flex-start;
+  }
+
+  .atlasList .value {
+    min-width: 116px;
+  }
+}

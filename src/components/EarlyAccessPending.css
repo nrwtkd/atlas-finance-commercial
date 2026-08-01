@@ -1,0 +1,151 @@
+.earlyAccessPage {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 28px 18px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(242, 209, 191, .45), transparent 26rem),
+    radial-gradient(circle at 100% 100%, rgba(183, 203, 174, .28), transparent 24rem),
+    #f5efe7;
+  color: #1f3152;
+}
+
+.earlyAccessCard {
+  width: min(100%, 560px);
+  padding: clamp(26px, 5vw, 44px);
+  border: 1px solid rgba(31, 49, 82, .11);
+  border-radius: 32px;
+  background: rgba(255, 250, 244, .96);
+  box-shadow: 0 26px 70px rgba(31, 49, 82, .13);
+  text-align: center;
+}
+
+.earlyAccessMark {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 20px;
+  place-items: center;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #2b4168, #1c2d4c);
+  color: #fffaf4;
+  box-shadow: 0 14px 30px rgba(31, 49, 82, .22);
+  font-family: Georgia, serif;
+  font-size: 29px;
+}
+
+.earlyAccessCard h1 {
+  margin: 8px 0 12px;
+  font-size: clamp(29px, 5vw, 42px);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+
+.earlyAccessLead {
+  max-width: 440px;
+  margin: 0 auto;
+  color: #68635d;
+  line-height: 1.65;
+}
+
+.earlyAccessIdentity {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 24px 0 18px;
+  padding: 15px 17px;
+  border: 1px solid rgba(31, 49, 82, .1);
+  border-radius: 18px;
+  background: #f6eee5;
+  text-align: left;
+}
+
+.earlyAccessIdentity > span {
+  display: grid;
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 14px;
+  background: #fffaf4;
+  color: #60785a;
+}
+
+.earlyAccessIdentity div {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.earlyAccessIdentity small {
+  color: #7a736b;
+}
+
+.earlyAccessIdentity strong {
+  overflow-wrap: anywhere;
+}
+
+.earlyAccessSteps {
+  display: grid;
+  gap: 9px;
+  margin: 18px 0;
+  text-align: left;
+}
+
+.earlyAccessSteps article {
+  display: grid;
+  grid-template-columns: 29px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(230, 238, 225, .55);
+  color: #49556d;
+  font-size: 13px;
+}
+
+.earlyAccessSteps b {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fffaf4;
+  color: #60785a;
+  font-size: 11px;
+}
+
+.earlyAccessCopy,
+.earlyAccessRetry {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.earlyAccessCopy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.earlyAccessSignOut {
+  margin-top: 16px;
+  padding: 8px;
+  border: 0;
+  background: transparent;
+  color: #9b5f4b;
+  font-weight: 800;
+}
+
+.earlyAccessFine {
+  margin: 18px 0 0;
+  color: #837b73;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+@media (max-width: 520px) {
+  .earlyAccessPage { padding: 12px; }
+  .earlyAccessCard { padding: 27px 19px; border-radius: 26px; }
+  .earlyAccessCard h1 { font-size: 31px; }
+}

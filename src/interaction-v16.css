@@ -1,0 +1,210 @@
+/* Atlas Finance — interaction fixes and personalized guidance */
+
+.toast.atlasToast {
+  position: fixed !important;
+  top: calc(env(safe-area-inset-top, 0px) + 82px) !important;
+  right: 18px !important;
+  bottom: auto !important;
+  left: auto !important;
+  display: inline-flex;
+  width: auto !important;
+  max-width: min(390px, calc(100vw - 36px)) !important;
+  min-height: 0 !important;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 9px;
+  padding: 10px 13px !important;
+  border-radius: 14px !important;
+  font-size: 13px !important;
+  font-weight: 750;
+  line-height: 1.4;
+  text-align: left;
+  z-index: 70;
+  animation: atlasToastIn 180ms ease both;
+}
+
+.atlasToast svg {
+  flex: 0 0 auto;
+}
+
+.atlasToast span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@keyframes atlasToastIn {
+  from { opacity: 0; transform: translateY(-6px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.beneficiaryField .chipGroup {
+  min-height: 38px;
+}
+
+.beneficiaryField .inlineAdd {
+  align-items: stretch;
+}
+
+.beneficiaryField .inlineAdd button {
+  white-space: nowrap;
+}
+
+.relatedPartyConfirmation {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 8px 2px 0;
+  color: var(--atlas-sage-deep, #60785a);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.guidanceModeCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 13px;
+  margin: 14px 0 22px;
+  padding: 17px 18px;
+  overflow: hidden;
+  border: 1px solid rgba(31, 49, 82, .11);
+  border-radius: 22px;
+  background: rgba(255, 251, 246, .94);
+  box-shadow: 0 14px 36px rgba(45, 50, 62, .07);
+}
+
+.guidanceModeCard::after {
+  position: absolute;
+  right: -38px;
+  bottom: -54px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: rgba(242, 209, 191, .22);
+  content: "";
+  pointer-events: none;
+}
+
+.guidanceModeCard--structured::after {
+  background: rgba(31, 49, 82, .08);
+}
+
+.guidanceModeCard--flexible::after {
+  background: rgba(191, 118, 92, .14);
+}
+
+.guidanceModeCard > * {
+  position: relative;
+  z-index: 1;
+}
+
+.guidanceModeIcon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 13px;
+  background: rgba(230, 238, 225, .9);
+  color: var(--atlas-ink, #1f3152);
+}
+
+.guidanceModeCard--flexible .guidanceModeIcon {
+  background: rgba(242, 209, 191, .72);
+}
+
+.guidanceModeCard--structured .guidanceModeIcon {
+  background: rgba(31, 49, 82, .09);
+}
+
+.guidanceModeCard strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--atlas-ink, #1f3152);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.guidanceModeCard p {
+  margin: 5px 0 0;
+  color: var(--atlas-ink-soft, #40506c);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.guidanceModeLabel {
+  align-self: start;
+  padding: 6px 9px;
+  border: 1px solid rgba(31, 49, 82, .1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .68);
+  color: var(--atlas-ink, #1f3152);
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.guidanceModeCard.compact {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  margin: 14px 0 18px;
+  padding: 14px 15px;
+  border-radius: 18px;
+  box-shadow: none;
+}
+
+.reviewGuidancePrompt,
+.emergencyGuidancePrompt {
+  display: block;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(31, 49, 82, .1);
+  color: var(--atlas-ink, #1f3152);
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .toast.atlasToast {
+    top: calc(env(safe-area-inset-top, 0px) + 76px) !important;
+    right: 12px !important;
+    left: 12px !important;
+    max-width: none !important;
+    padding: 9px 12px !important;
+    font-size: 12px !important;
+  }
+
+  .guidanceModeCard {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 11px;
+    padding: 15px;
+  }
+
+  .guidanceModeCard .atlasCompanion {
+    display: none;
+  }
+
+  .guidanceModeLabel {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .guidanceModeCard.compact {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .guidanceModeCard.compact .guidanceModeLabel {
+    grid-column: 2;
+  }
+
+  .beneficiaryField .inlineAdd {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .beneficiaryField .inlineAdd button {
+    width: 100%;
+    min-height: 46px;
+  }
+}

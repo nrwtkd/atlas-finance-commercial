@@ -1,0 +1,289 @@
+.welcomeJourney {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
+  gap: 22px;
+  margin: 2px 0 18px;
+  padding: clamp(22px, 4vw, 34px);
+  overflow: hidden;
+  border: 1px solid rgba(213,143,112,.28);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 96% 0%, rgba(213,143,112,.18), transparent 18rem),
+    linear-gradient(145deg, rgba(255,250,243,.98), rgba(248,239,228,.96));
+  box-shadow: 0 22px 58px rgba(67,50,38,.10);
+}
+
+.welcomeBloom {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  color: rgba(213,143,112,.52);
+  font-size: 22px;
+}
+
+.welcomeCopy {
+  position: relative;
+  z-index: 1;
+}
+
+.welcomeKicker {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--terracotta-deep);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .17em;
+}
+
+.welcomeJourney h2 {
+  max-width: 520px;
+  margin: 0 0 13px;
+  color: var(--navy);
+  font-size: clamp(29px, 4vw, 42px);
+  line-height: 1.02;
+}
+
+.welcomeJourney p {
+  margin-bottom: 12px;
+  color: #67625e;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.welcomeJourney .welcomeLead {
+  color: var(--navy);
+  font-size: 15px;
+}
+
+.welcomeTrust {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  margin: 4px 0 17px;
+  padding: 10px 13px;
+  border: 1px solid rgba(153,170,145,.35);
+  border-radius: 15px;
+  background: rgba(232,238,227,.72);
+}
+
+.welcomeTrust > span {
+  display: grid;
+  width: 35px;
+  height: 35px;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(255,250,243,.9);
+  color: #718367;
+  font-size: 18px;
+}
+
+.welcomeTrust div {
+  display: grid;
+  gap: 2px;
+}
+
+.welcomeTrust strong {
+  color: var(--navy);
+  font-size: 12px;
+}
+
+.welcomeTrust small {
+  color: #687163;
+  font-size: 10px;
+}
+
+.welcomeAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 15px;
+  background: var(--navy);
+  color: white;
+  font-weight: 900;
+  box-shadow: 0 12px 24px rgba(32,48,74,.16);
+}
+
+.welcomeAction:hover {
+  transform: translateY(-1px);
+  background: #172641;
+}
+
+.quickGuide {
+  position: relative;
+  align-self: stretch;
+  padding: 0 18px 16px;
+  border: 1px solid rgba(229,217,203,.95);
+  border-radius: 22px;
+  background: rgba(255,255,255,.63);
+}
+
+.quickGuide summary {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 16px 0 13px;
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.quickGuide summary::-webkit-details-marker { display: none; }
+.quickGuide summary::after {
+  content: "+";
+  margin-left: auto;
+  color: var(--terracotta-deep);
+  font-family: Inter, sans-serif;
+  font-size: 20px;
+}
+.quickGuide[open] summary::after { content: "−"; }
+
+.quickGuide ol {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: atlas-step;
+}
+
+.quickGuide li {
+  display: grid;
+  grid-template-columns: 29px 1fr;
+  column-gap: 10px;
+  padding: 11px 0;
+  border-top: 1px solid rgba(229,217,203,.78);
+  counter-increment: atlas-step;
+}
+
+.quickGuide li::before {
+  content: counter(atlas-step);
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  grid-row: 1 / 3;
+  border-radius: 50%;
+  background: var(--sage-soft);
+  color: #63765d;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.quickGuide li strong {
+  color: var(--navy);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.quickGuide li span {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.48;
+}
+
+.portabilityCard {
+  display: grid;
+  gap: 17px;
+  margin-top: 14px;
+  padding: 20px;
+}
+
+.portabilityIntro {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.portabilityIcon {
+  display: grid;
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 15px;
+  background: var(--soft);
+  color: var(--navy);
+  font-size: 20px;
+}
+
+.portabilityIntro h3 {
+  margin: 5px 0 6px;
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+}
+
+.portabilityIntro p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.58;
+}
+
+.portabilityActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.portabilityActions .secondary {
+  width: 100%;
+}
+
+.portabilityStatus {
+  margin: -2px 0 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--sage-soft);
+  color: #53684f;
+  font-size: 11px;
+  text-align: center;
+}
+
+.visuallyHidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@media (max-width: 760px) {
+  .welcomeJourney {
+    grid-template-columns: 1fr;
+    padding: 22px 18px;
+    border-radius: 24px;
+  }
+
+  .welcomeJourney h2 {
+    font-size: clamp(30px, 10vw, 40px);
+  }
+
+  .quickGuide {
+    padding-inline: 15px;
+  }
+}
+
+@media (max-width: 460px) {
+  .welcomeAction,
+  .welcomeTrust {
+    width: 100%;
+  }
+
+  .portabilityActions {
+    grid-template-columns: 1fr;
+  }
+}
