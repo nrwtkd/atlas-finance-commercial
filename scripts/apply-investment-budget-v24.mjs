@@ -221,7 +221,7 @@ await edit("src/App.tsx", (input) => {
   </form>;
 }`;
 
-  const budgetPattern = /function BudgetPlanner\([\s\S]*?(?=\nfunction MySpace)/;
+  const budgetPattern = /function BudgetPlanner\([\s\S]*?(?=\nfunction LearningCenter)/;
   if (!budgetPattern.test(source)) throw new Error("Atlas responsive budget planner anchor missing");
   source = source.replace(budgetPattern, budgetPlanner);
 
